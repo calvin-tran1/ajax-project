@@ -9,7 +9,6 @@
 
 .row {
   display: flex;
-  flex-wrap: wrap;
 }
 
 .column-full,
@@ -25,6 +24,23 @@ header > .container > .row {
 header > .container > .row > .column-full {
   display: flex;
   justify-content: space-between;
+}
+
+/* homepage: recipe of the day */
+.rotd-content {
+  display: flex;
+  justify-content: center;
+  flex-basis: 1920px;
+}
+
+.ingr,
+.nutr,
+.view-recipe {
+  margin: 0 8.3em;
+}
+
+.row > .column-full.rotd-content > .row > .column-half {
+  margin-left: 5em;
 }
 
 /* @media screen and (min-width: 768px) {
