@@ -59,3 +59,12 @@ a {
 }
 
 /* homepage: recipe of the day */
+.rotd-banner {
+  background-color: rgb(255, 253, 228);
+  text-align: center;
+}
+
+.rotd-title {
+  text-align: center;
+  font-size: 1.75em;
+}
