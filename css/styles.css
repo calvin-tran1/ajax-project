@@ -1,0 +1,61 @@
+* {
+  font-family: sans-serif;
+}
+
+body {
+  background-color: rgb(224, 224, 224);
+}
+
+/* navbar */
+header {
+  background-color: rgb(167, 163, 163);
+}
+
+a {
+  text-decoration: none;
+}
+
+#home {
+  color: white;
+  font-size: 1.75rem;
+  padding: 0 2em;
+}
+
+#favorites,
+#your-recipes,
+#write-recipe {
+  color: white;
+  margin: 0.45em 3em 0 0;
+  vertical-align: 4px;
+}
+
+#search {
+  border-style: none;
+  border-radius: 2px;
+  height: 2.2em;
+  padding-left: 0.5em;
+  color: rgb(167, 163, 163);
+}
+
+#search-btn {
+  width: 25px;
+  height: 25px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  margin-left: -40px;
+  vertical-align: -7px;
+  cursor: pointer;
+}
+
+#search-btn > img {
+  max-width: 180%;
+  object-fit: cover;
+}
+
+.search-wrapper {
+  display: inline-block;
+  margin-right: 6em;
+}
+
+/* homepage: recipe of the day */

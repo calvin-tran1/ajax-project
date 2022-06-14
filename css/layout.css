@@ -1,0 +1,38 @@
+.hidden {
+  display: none !important;
+}
+
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.column-full,
+.column-half {
+  width: 100%;
+}
+
+/* navbar */
+header > .container > .row {
+  padding: 0.5rem 0.4rem 0.4rem;
+}
+
+header > .container > .row > .column-full {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* @media screen and (min-width: 768px) {
+  .container {
+    max-width: 50%;
+  }
+
+  .column-half {
+    width: 50%;
+  }
+} */
