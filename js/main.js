@@ -1,3 +1,5 @@
+/* global rotd */
+
 var $ingredientsList = document.querySelector('.ingredients-list');
 var $rotdTitle = document.querySelector('.rotd-title');
 var $rotdLink = document.querySelector('#rotd-link');
@@ -38,65 +40,31 @@ xhrChicken.addEventListener('load', () => {
     var randomRecipe = category.response.hits[randomIndex];
     return randomRecipe;
   }
-  var rotd = getRandomRecipe(randomCategory);
 
-  for (var i = 0; i < rotd.recipe.ingredientLines.length; i++) {
-    var $li = document.createElement('li');
-    $li.textContent = rotd.recipe.ingredientLines[i];
-    $ingredientsList.appendChild($li);
-  }
+  rotd.push(getRandomRecipe(randomCategory));
 
-  var cal = document.createTextNode(rotd.recipe.calories);
-  var fat = document.createTextNode(rotd.recipe.digest[0].total + 'g');
-  var carbs = document.createTextNode(rotd.recipe.digest[1].total + 'g');
-  var protein = document.createTextNode(rotd.recipe.digest[2].total + 'g');
-  var chol = document.createTextNode(rotd.recipe.digest[3].total + 'g');
-
-  $cal.appendChild(cal);
-  $fat.appendChild(fat);
-  $carbs.appendChild(carbs);
-  $protein.appendChild(protein);
-  $chol.appendChild(chol);
-
-  $rotdTitle.textContent = rotd.recipe.label;
-
-  $rotdLink.textContent = rotd.recipe.url;
-
-  $rotdImg.src = rotd.recipe.image;
+  renderRotd();
 });
 xhrChicken.send();
 
-// function rotd() {
-//   function getRandomCategory(category) {
-//     return category[Math.floor(Math.random() * category.length)];
-//   }
-//   getRandomCategory(xhrAll);
-//   console.log(randomCategory);
-//   var rotd = getRandomRecipe(xhrPasta.response.hits);
+function renderRotd() {
+  $ingredientsList.innerHTML = '';
+  for (var i = 0; i < rotd[0].recipe.ingredientLines.length; i++) {
+    var $li = document.createElement('li');
+    $li.textContent = rotd[0].recipe.ingredientLines[i];
+    $ingredientsList.appendChild($li);
+  }
 
-//   for (var i = 0; i < rotd.recipe.ingredientLines.length; i++) {
-//     var $li = document.createElement('li');
-//     $li.textContent = rotd.recipe.ingredientLines[i];
-//     $ingredientsList.appendChild($li);
-//   }
+  $cal.textContent = 'Calories: ' + rotd[0].recipe.calories;
+  $fat.textContent = 'Fat: ' + rotd[0].recipe.digest[0].total + 'g';
+  $carbs.textContent = 'Carbs: ' + rotd[0].recipe.digest[1].total + 'g';
+  $protein.textContent = 'Protein: ' + rotd[0].recipe.digest[2].total + 'g';
+  $chol.textContent = 'Cholesterol: ' + rotd[0].recipe.digest[3].total + 'g';
 
-//   var cal = document.createTextNode(rotd.recipe.calories);
-//   var fat = document.createTextNode(rotd.recipe.digest[0].total + 'g');
-//   var carbs = document.createTextNode(rotd.recipe.digest[1].total + 'g');
-//   var protein = document.createTextNode(rotd.recipe.digest[2].total + 'g');
-//   var chol = document.createTextNode(rotd.recipe.digest[3].total + 'g');
+  $rotdTitle.textContent = rotd[0].recipe.label;
 
-//   $cal.appendChild(cal);
-//   $fat.appendChild(fat);
-//   $carbs.appendChild(carbs);
-//   $protein.appendChild(protein);
-//   $chol.appendChild(chol);
+  $rotdLink.textContent = rotd[0].recipe.url;
+  $rotdLink.setAttribute('href', rotd[0].recipe.url);
 
-//   $rotdTitle.textContent = rotd.recipe.label;
-
-//   $rotdLink.textContent = rotd.recipe.url;
-
-//   $rotdImg.src = rotd.recipe.image;
-// }
-
-// rotd();
+  $rotdImg.src = rotd[0].recipe.image;
+}
