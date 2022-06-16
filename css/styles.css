@@ -59,9 +59,15 @@ a {
 }
 
 .rotd-title {
+  display: inline;
   text-align: center;
   font-size: 1.6em;
   font-weight: bold;
+}
+
+.rotd-title-wrapper {
+  display: flex;
+  justify-content: center;
 }
 
 #rotd-img {
@@ -100,4 +106,23 @@ hr {
   height: 1px;
   border-style: none;
   background-color: black;
+}
+
+/* heart icon */
+.heart-btn {
+  background-color: transparent;
+  border-style: none;
+}
+
+.fa-heart {
+  font-size: 2em;
+}
+
+#heart:hover {
+  cursor: pointer;
+  color: #f50057;
+}
+
+.fas {
+  color: #f50057;
 }

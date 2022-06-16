@@ -12,6 +12,8 @@ var $chol = document.querySelector('.chol');
 var $favorites = document.getElementById('favorites');
 var $yourRecipes = document.getElementById('your-recipes');
 var $writeRecipe = document.getElementById('write-recipe');
+var $heartBtn = document.querySelector('.heart-btn');
+var $heart = document.getElementById('heart');
 
 var xhrAll = [];
 var xhrPasta = new XMLHttpRequest();
@@ -83,4 +85,16 @@ window.addEventListener('resize', () => {
     $yourRecipes.style.display = 'inline';
     $writeRecipe.style.display = 'inline';
   }
+});
+
+// heart btn
+$heartBtn.addEventListener('click', () => {
+  if ($heart.classList.contains('far')) {
+    $heart.classList.remove('far');
+    $heart.classList.add('fas');
+  } else {
+    $heart.classList.remove('fas');
+    $heart.classList.add('far');
+  }
+
 });
