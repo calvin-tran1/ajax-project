@@ -44,18 +44,12 @@ a {
   border: none;
   outline: none;
   margin-left: -40px;
-  vertical-align: -7px;
+  margin-top: 2px;
   cursor: pointer;
 }
 
 #search-btn > img {
   max-width: 180%;
-  object-fit: cover;
-}
-
-.search-wrapper {
-  display: inline-block;
-  margin-right: 6em;
 }
 
 /* homepage: recipe of the day */
@@ -71,8 +65,7 @@ a {
 }
 
 #rotd-img {
-  /* margin: 0.5em 4em 0.5em 11em; */
-  margin: 0 auto;
+  margin: 0 auto 2em;
   border-radius: 10px;
 }
 
@@ -97,15 +90,14 @@ li {
   padding: 0;
 }
 
-hr {
-  margin-left: 8em;
-  height: 2px;
-  max-width: 1150px;
-  min-width: 1150px;
-  background-color: black;
-  border: none;
-}
-
 .view-full-recipe-title {
   font-weight: bold;
+}
+
+hr {
+  width: 90%;
+  float: left;
+  height: 1px;
+  border-style: none;
+  background-color: black;
 }

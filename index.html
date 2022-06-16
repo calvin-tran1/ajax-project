@@ -12,21 +12,19 @@
 <body>
   <header>
     <div class="container">
-      <div class="row">
-        <div class="column-full">
-          <div class="nav-wrapper">
-            <a href="#" id="home">RECIPE BOOK</a>
-            <a href="#" id="favorites">Your Favorites</a>
-            <a href="#" id="your-recipes">Your Recipes</a>
-            <a href="#" id="write-recipe">Write a Recipe</a>
-          </div>
-          <div class="search-wrapper">
-            <label for="search"></label>
-            <input id="search" type="search" placeholder="Search for recipes!" size="60">
-            <button id="search-btn" type="submit">
-              <img src="images/search.png">
-            </button>
-          </div>
+      <div class="row navbar">
+        <div class="column-half nav-wrapper">
+          <a href="#" id="home">RECIPE BOOK</a>
+          <a href="#" id="favorites">Your Favorites</a>
+          <a href="#" id="your-recipes">Your Recipes</a>
+          <a href="#" id="write-recipe">Write a Recipe</a>
+        </div>
+        <div class="column-half search-wrapper">
+          <label for="search"></label>
+          <input id="search" type="search" placeholder="Search for recipes!" size="45">
+          <button id="search-btn" type="submit">
+            <img src="images/search.png">
+          </button>
         </div>
       </div>
     </div>
@@ -44,42 +42,36 @@
         </div>
       </div>
       <div class="row">
-        <div class="column-full rotd-content">
-          <div class="row">
-            <div class="column-half">
-              <img id="rotd-img" src="images/img-placeholder.jpg">
+        <div class="column-half rotd-img">
+          <img id="rotd-img" src="images/img-placeholder.jpg">
+        </div>
+        <div class="column-half">
+          <div class="row ingr-nutr">
+            <div class="column-half ingr">
+              <p class="ingredients-title">Ingredients</p>
+              <ul class="ingredients-list">
+              </ul>
+            </div>
+            <div class="column-half nutr">
+              <p class="nutrition-title">Nutrition</p>
+              <ul class="nutrition-list">
+                <li class="cal"></li>
+                <li class="fat"></li>
+                <li class="carbs"></li>
+                <li class="protein"></li>
+                <li class="chol"></li>
+              </ul>
             </div>
           </div>
           <div class="row">
-            <div class="column-half ingr-nutr">
-              <div class="row ingr-nutr">
-                <div class="column-half ingr">
-                  <p class="ingredients-title">Ingredients</p>
-                  <ul class="ingredients-list">
-                  </ul>
-                </div>
-                <div class="column-half nutr">
-                  <p class="nutrition-title">Nutrition</p>
-                  <ul class="nutrition-list">
-                    <li class="cal"></li>
-                    <li class="fat"></li>
-                    <li class="carbs"></li>
-                    <li class="protein"></li>
-                    <li class="chol"></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="row">
-                <div class="column-full">
-                  <hr>
-                </div>
-              </div>
-              <div class="row">
-                <div class="column-full view-recipe">
-                  <p class="view-full-recipe-title">View Full Recipe</p>
-                  <a href="#" id="rotd-link"></a>
-                </div>
-              </div>
+            <div class="column-full hr">
+              <hr>
+            </div>
+          </div>
+          <div class="row">
+            <div class="column-full view-recipe">
+              <p class="view-full-recipe-title">View Full Recipe</p>
+              <a href="#" id="rotd-link"></a>
             </div>
           </div>
         </div>

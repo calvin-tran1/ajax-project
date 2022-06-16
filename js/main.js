@@ -9,6 +9,9 @@ var $fat = document.querySelector('.fat');
 var $carbs = document.querySelector('.carbs');
 var $protein = document.querySelector('.protein');
 var $chol = document.querySelector('.chol');
+var $favorites = document.getElementById('favorites');
+var $yourRecipes = document.getElementById('your-recipes');
+var $writeRecipe = document.getElementById('write-recipe');
 
 var xhrAll = [];
 var xhrPasta = new XMLHttpRequest();
@@ -68,3 +71,16 @@ function renderRotd() {
 
   $rotdImg.src = rotd[0].recipe.image;
 }
+
+// navbar mobile/desktop view-switch
+window.addEventListener('resize', () => {
+  if (window.innerWidth < 768) {
+    $favorites.style.display = 'none';
+    $yourRecipes.style.display = 'none';
+    $writeRecipe.style.display = 'none';
+  } else {
+    $favorites.style.display = 'inline';
+    $yourRecipes.style.display = 'inline';
+    $writeRecipe.style.display = 'inline';
+  }
+});
