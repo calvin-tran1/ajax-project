@@ -1,0 +1,56 @@
+.hidden {
+  display: none !important;
+}
+
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.column-full,
+.column-half {
+  width: 100%;
+}
+
+/* navbar */
+header > .container > .row {
+  padding: 0.5rem 0.4rem 0.4rem;
+}
+
+header > .container > .row > .column-full {
+  display: flex;
+  justify-content: space-between;
+}
+
+.column-half.search-wrapper {
+  display: flex;
+  justify-content: end;
+  padding-right: 4.75em;
+}
+
+/* homepage: recipe of the day */
+.rotd-img {
+  display: flex;
+  justify-content: center;
+}
+
+.ingr-nutr,
+.hr,
+.view-recipe {
+  padding-left: 1em;
+}
+
+.view-recipe {
+  margin-bottom: 1em;
+}
+
+@media screen and (min-width: 768px) {
+  .column-half {
+    width: 50%;
+  }
+}

@@ -1,0 +1,128 @@
+* {
+  font-family: sans-serif;
+}
+
+body {
+  background-color: rgb(224, 224, 224);
+}
+
+/* navbar */
+header {
+  background-color: rgb(167, 163, 163);
+}
+
+a {
+  text-decoration: none;
+}
+
+#home {
+  color: white;
+  font-size: 1.75rem;
+  padding: 0 2em;
+}
+
+#favorites,
+#your-recipes,
+#write-recipe {
+  color: white;
+  margin: 0.45em 3em 0 0;
+  vertical-align: 4px;
+}
+
+#search {
+  border-style: none;
+  border-radius: 2px;
+  height: 2.2em;
+  padding-left: 0.5em;
+  color: rgb(167, 163, 163);
+}
+
+#search-btn {
+  width: 25px;
+  height: 25px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  margin-left: -40px;
+  margin-top: 2px;
+  cursor: pointer;
+}
+
+#search-btn > img {
+  max-width: 180%;
+}
+
+/* homepage: recipe of the day */
+.rotd-banner {
+  background-color: rgb(255, 253, 228);
+  text-align: center;
+}
+
+.rotd-title {
+  display: inline;
+  text-align: center;
+  font-size: 1.6em;
+  font-weight: bold;
+}
+
+.rotd-title-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+#rotd-img {
+  margin: 0 auto 2em;
+  border-radius: 10px;
+}
+
+.ingredients-title,
+.nutrition-title {
+  margin: 0 auto;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.ingredients-list {
+  margin: 1em 0;
+  padding: 0 1em;
+}
+
+li {
+  padding: 0.2em;
+}
+
+.nutrition-list {
+  list-style: none;
+  padding: 0;
+}
+
+.view-full-recipe-title {
+  font-weight: bold;
+}
+
+hr {
+  width: 90%;
+  float: left;
+  height: 1px;
+  border-style: none;
+  background-color: black;
+}
+
+/* heart icon */
+.heart-btn {
+  background-color: transparent;
+  border-style: none;
+}
+
+.fa-heart {
+  font-size: 2em;
+}
+
+#heart:hover {
+  cursor: pointer;
+  color: #f50057;
+}
+
+.fas {
+  color: #f50057;
+}
