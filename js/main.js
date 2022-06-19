@@ -120,7 +120,7 @@
 
 //     for (var i = 0; i < recipes.ingredientLines.length; i++) {
 //       var dataIngredientsList = searchResults.querySelector('[data-ingredients-list]');
-//       var $li = searchResults.createElement('li');
+//       var $li = document.createElement('li');
 //       $li.textContent = recipes.ingredientLines[i];
 //       dataIngredientsList.appendChild($li);
 //     }
