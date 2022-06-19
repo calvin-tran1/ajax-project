@@ -1,19 +1,19 @@
 /* global rotd */
 
 var $ingredientsList = document.querySelector('.ingredients-list');
-var $rotdTitle = document.querySelector('.rotd-title');
-var $rotdLink = document.querySelector('#rotd-link');
-var $rotdImg = document.querySelector('#rotd-img');
+var $recipeTitle = document.querySelector('.recipe-title');
+var $recipeLink = document.querySelector('.recipe-link');
+var $recipeImg = document.querySelector('.recipe-img');
 var $cal = document.querySelector('.cal');
 var $fat = document.querySelector('.fat');
 var $carbs = document.querySelector('.carbs');
 var $protein = document.querySelector('.protein');
 var $chol = document.querySelector('.chol');
-var $favorites = document.getElementById('favorites');
-var $yourRecipes = document.getElementById('your-recipes');
-var $writeRecipe = document.getElementById('write-recipe');
-var $heartBtn = document.querySelector('.heart-btn');
-var $heart = document.getElementById('heart');
+// var $favorites = document.getElementById('favorites');
+// var $yourRecipes = document.getElementById('your-recipes');
+// var $writeRecipe = document.getElementById('write-recipe');
+// var $homeHeartBtn = document.querySelector('.home-heart-btn');
+// var $heart = document.querySelectorAll('.fa-heart');
 
 var xhrAll = [];
 var xhrPasta = new XMLHttpRequest();
@@ -66,35 +66,42 @@ function renderRotd() {
   $protein.textContent = 'Protein: ' + rotd[0].recipe.digest[2].total + 'g';
   $chol.textContent = 'Cholesterol: ' + rotd[0].recipe.digest[3].total + 'g';
 
-  $rotdTitle.textContent = rotd[0].recipe.label;
+  $recipeTitle.textContent = rotd[0].recipe.label;
 
-  $rotdLink.textContent = rotd[0].recipe.url;
-  $rotdLink.setAttribute('href', rotd[0].recipe.url);
+  $recipeLink.textContent = rotd[0].recipe.url;
+  $recipeLink.setAttribute('href', rotd[0].recipe.url);
 
-  $rotdImg.src = rotd[0].recipe.image;
+  $recipeImg.src = rotd[0].recipe.image;
 }
 
 // navbar mobile/desktop view-switch
-window.addEventListener('resize', () => {
-  if (window.innerWidth < 768) {
-    $favorites.style.display = 'none';
-    $yourRecipes.style.display = 'none';
-    $writeRecipe.style.display = 'none';
-  } else {
-    $favorites.style.display = 'inline';
-    $yourRecipes.style.display = 'inline';
-    $writeRecipe.style.display = 'inline';
-  }
-});
+// window.addEventListener('resize', () => {
+//   if (window.innerWidth < 768) {
+//     $favorites.style.display = 'none';
+//     $yourRecipes.style.display = 'none';
+//     $writeRecipe.style.display = 'none';
+//   } else {
+//     $favorites.style.display = 'inline';
+//     $yourRecipes.style.display = 'inline';
+//     $writeRecipe.style.display = 'inline';
+//   }
+// });
 
 // heart btn
-$heartBtn.addEventListener('click', () => {
-  if ($heart.classList.contains('far')) {
-    $heart.classList.remove('far');
-    $heart.classList.add('fas');
-  } else {
-    $heart.classList.remove('fas');
-    $heart.classList.add('far');
-  }
+// $homeHeartBtn.addEventListener('click', () => {
+//   if ($heart.contains('far')) {
+//     $heart.classList.remove('far');
+//     $heart.classList.add('fas');
+//   } else {
+//     $heart.classList.remove('fas');
+//     $heart.classList.add('far');
+//   }
+// });
 
-});
+// if ($heart[i].classList.contains('far')) {
+//   $heart[i].classList.remove('far');
+//   $heart[i].classList.add('fas');
+// } else {
+//   $heart[i].classList.remove('fas');
+//   $heart[i].classList.add('far');
+// }

@@ -12,42 +12,50 @@
 </head>
 <body>
   <header>
-    <div class="container">
-      <div class="row navbar">
-        <div class="column-half nav-wrapper">
-          <a href="#" id="home">RECIPE BOOK</a>
-          <a href="#" id="favorites">Your Favorites</a>
-          <a href="#" id="your-recipes">Your Recipes</a>
-          <a href="#" id="write-recipe">Write a Recipe</a>
-        </div>
-        <div class="column-half search-wrapper">
-          <label for="search"></label>
-          <input id="search" type="search" placeholder="Search for recipes!" size="45">
-          <button id="search-btn" type="submit">
-            <img src="images/search.png">
-          </button>
-        </div>
+    <div class="row home-banner">
+      <div class="column-full home">
+        <a href="#" id="home">RECIPE BOOK</a>
       </div>
     </div>
+    <nav>
+      <ul class="navigation-menu">
+        <li>
+          <a href="#" id="favorites">Your Favorites</a>
+        </li>
+        <li>
+          <a href="#" id="your-recipes">Your Recipes</a>
+        </li>
+        <li>
+          <a href="#" id="write-recipe">Write a Recipe</a>
+        </li>
+      </ul>
+    </nav>
+    <!-- <div class="search-wrapper flex">
+      <label for="search"></label>
+      <input id="search" type="search" placeholder="Search for recipes!" size="45">
+      <button id="search-btn" type="submit">
+        <img src="images/search.png">
+      </button> -->
   </header>
   <main>
-    <div class="container">
+    <!--home page: recipe of the day-->
+    <div class="container" data-view-rotd>
       <div class="row">
         <div class="column-full rotd-banner">
           <h1>Recipe of the day!</h1>
         </div>
       </div>
       <div class="row">
-        <div class="column-full rotd-title-wrapper">
-          <p class="rotd-title">.</p>
+        <div class="column-full recipe-title-wrapper">
+          <p class="recipe-title"> </p>
           <button type="button" class="heart-btn">
-            <i id="heart" class="far fa-heart"></i>
+            <i class="far fa-heart"></i>
           </button>
         </div>
       </div>
       <div class="row">
-        <div class="column-half rotd-img">
-          <img id="rotd-img" src="images/img-placeholder.jpg">
+        <div class="column-half recipe-img-wrapper">
+          <img class="recipe-img" src="images/img-placeholder.png">
         </div>
         <div class="column-half">
           <div class="row ingr-nutr">
@@ -68,19 +76,71 @@
             </div>
           </div>
           <div class="row">
-            <div class="column-full hr">
-              <hr>
+            <div class="column-full recipe-hr">
+              <hr class="recipe-line">
             </div>
           </div>
           <div class="row">
             <div class="column-full view-recipe">
               <p class="view-full-recipe-title">View Full Recipe</p>
-              <a href="#" id="rotd-link"></a>
+              <a href="#" class="recipe-link"></a>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <!--search results-->
+    <div class="container hidden" data-view-search-results></div>
+    <template>
+      <div class="row">
+        <div class="column-full recipe-title-wrapper">
+          <p class="recipe-title"> </p>
+          <button type="button" class="home-heart-btn">
+            <i class="far fa-heart"></i>
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column-half recipe-img-wrapper">
+          <img class="recipe-img" src="images/img-placeholder.png">
+        </div>
+        <div class="column-half">
+          <div class="row ingr-nutr">
+            <div class="column-half ingr">
+              <p class="ingredients-title">Ingredients</p>
+              <ul class="ingredients-list">
+              </ul>
+            </div>
+            <div class="column-half nutr">
+              <p class="nutrition-title">Nutrition</p>
+              <ul class="nutrition-list">
+                <li class="cal"></li>
+                <li class="fat"></li>
+                <li class="carbs"></li>
+                <li class="protein"></li>
+                <li class="chol"></li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="column-full recipe-hr">
+              <hr class="recipe-line">
+            </div>
+          </div>
+          <div class="row">
+            <div class="column-full view-recipe">
+              <p class="view-full-recipe-title">View Full Recipe</p>
+              <a href="#" class="recipe-link"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column-full">
+          <hr class="divider-line">
+        </div>
+      </div>
+    </template>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>

@@ -34,13 +34,13 @@ header > .container > .row > .column-full {
 }
 
 /* homepage: recipe of the day */
-.rotd-img {
+.recipe-img-wrapper {
   display: flex;
   justify-content: center;
 }
 
 .ingr-nutr,
-.hr,
+.recipe-hr,
 .view-recipe {
   padding-left: 1em;
 }
@@ -49,8 +49,35 @@ header > .container > .row > .column-full {
   margin-bottom: 1em;
 }
 
+/* search results */
+
+/* stylelint-disable-next-line no-descending-specificity */
+[data-view-search-results] > .row {
+  margin: 1em auto;
+}
+
 @media screen and (min-width: 768px) {
   .column-half {
     width: 50%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  header {
+    position: fixed;
+  }
+
+  .navigation-menu {
+    position: fixed;
+    inset: 4.5% 0 70% 0;
+    background-color: rgb(167, 163, 163, 0.85);
+    backdrop-filter: blur(1em);
+    flex-direction: column;
+    align-items: start !important;
+    padding: max(2vh, 1em) 3em;
+  }
+
+  .home {
+    width: 100vw !important;
   }
 }
