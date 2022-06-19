@@ -1,107 +1,162 @@
-/* global rotd */
+// /* global rotd */
 
-var $ingredientsList = document.querySelector('.ingredients-list');
-var $recipeTitle = document.querySelector('.recipe-title');
-var $recipeLink = document.querySelector('.recipe-link');
-var $recipeImg = document.querySelector('.recipe-img');
-var $cal = document.querySelector('.cal');
-var $fat = document.querySelector('.fat');
-var $carbs = document.querySelector('.carbs');
-var $protein = document.querySelector('.protein');
-var $chol = document.querySelector('.chol');
+// var $ingredientsList = document.querySelector('.ingredients-list');
+// var $recipeTitle = document.querySelector('.recipe-title');
+// var $recipeLink = document.querySelector('.recipe-link');
+// var $recipeImg = document.querySelector('.recipe-img');
+// var $cal = document.querySelector('.cal');
+// var $fat = document.querySelector('.fat');
+// var $carbs = document.querySelector('.carbs');
+// var $protein = document.querySelector('.protein');
+// var $chol = document.querySelector('.chol');
 // var $favorites = document.getElementById('favorites');
 // var $yourRecipes = document.getElementById('your-recipes');
 // var $writeRecipe = document.getElementById('write-recipe');
 // var $homeHeartBtn = document.querySelector('.home-heart-btn');
 // var $heart = document.querySelectorAll('.fa-heart');
+// var $dataViewSearchResults = document.querySelector('[data-view-search-results]');
 
-var xhrAll = [];
-var xhrPasta = new XMLHttpRequest();
-var xhrChicken = new XMLHttpRequest();
+// var xhrPasta = new XMLHttpRequest();
+// var xhrChicken = new XMLHttpRequest();
+// var xhrAll = [];
+// var categories = [];
+// var recipes = [];
 
-xhrPasta.open('GET', 'https://api.edamam.com/api/recipes/v2?type=public&q=pasta&app_id=d9d7c90f&app_key=0f9cf819b103aee9ff35391f403b7886');
-xhrPasta.responseType = 'json';
-xhrPasta.addEventListener('load', () => {
-  xhrAll.push(xhrPasta);
-});
-xhrPasta.send();
-
-xhrChicken.open('GET', 'https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=d9d7c90f&app_key=0f9cf819b103aee9ff35391f403b7886');
-xhrChicken.responseType = 'json';
-xhrChicken.addEventListener('load', () => {
-  xhrAll.push(xhrChicken);
-
-  var randomCategory;
-
-  function getRandomCategory() {
-    randomCategory = xhrAll[Math.floor(Math.random() * xhrAll.length)];
-
-    return randomCategory;
-  }
-  getRandomCategory();
-
-  function getRandomRecipe(category) {
-    var randomIndex = Math.floor(Math.random() * category.response.hits.length);
-    var randomRecipe = category.response.hits[randomIndex];
-    return randomRecipe;
-  }
-
-  rotd.push(getRandomRecipe(randomCategory));
-
-  renderRotd();
-});
-xhrChicken.send();
-
-function renderRotd() {
-  $ingredientsList.innerHTML = '';
-  for (var i = 0; i < rotd[0].recipe.ingredientLines.length; i++) {
-    var $li = document.createElement('li');
-    $li.textContent = rotd[0].recipe.ingredientLines[i];
-    $ingredientsList.appendChild($li);
-  }
-
-  $cal.textContent = 'Calories: ' + rotd[0].recipe.calories;
-  $fat.textContent = 'Fat: ' + rotd[0].recipe.digest[0].total + 'g';
-  $carbs.textContent = 'Carbs: ' + rotd[0].recipe.digest[1].total + 'g';
-  $protein.textContent = 'Protein: ' + rotd[0].recipe.digest[2].total + 'g';
-  $chol.textContent = 'Cholesterol: ' + rotd[0].recipe.digest[3].total + 'g';
-
-  $recipeTitle.textContent = rotd[0].recipe.label;
-
-  $recipeLink.textContent = rotd[0].recipe.url;
-  $recipeLink.setAttribute('href', rotd[0].recipe.url);
-
-  $recipeImg.src = rotd[0].recipe.image;
-}
-
-// navbar mobile/desktop view-switch
-// window.addEventListener('resize', () => {
-//   if (window.innerWidth < 768) {
-//     $favorites.style.display = 'none';
-//     $yourRecipes.style.display = 'none';
-//     $writeRecipe.style.display = 'none';
-//   } else {
-//     $favorites.style.display = 'inline';
-//     $yourRecipes.style.display = 'inline';
-//     $writeRecipe.style.display = 'inline';
-//   }
+// xhrPasta.open('GET', 'https://api.edamam.com/api/recipes/v2?type=public&q=pasta&app_id=d9d7c90f&app_key=0f9cf819b103aee9ff35391f403b7886');
+// xhrPasta.responseType = 'json';
+// xhrPasta.addEventListener('load', () => {
+//   xhrAll.push(xhrPasta);
 // });
+// xhrPasta.send();
 
-// heart btn
-// $homeHeartBtn.addEventListener('click', () => {
-//   if ($heart.contains('far')) {
-//     $heart.classList.remove('far');
-//     $heart.classList.add('fas');
-//   } else {
-//     $heart.classList.remove('fas');
-//     $heart.classList.add('far');
+// xhrChicken.open('GET', 'https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=d9d7c90f&app_key=0f9cf819b103aee9ff35391f403b7886');
+// xhrChicken.responseType = 'json';
+// xhrChicken.addEventListener('load', () => {
+//   xhrAll.push(xhrChicken);
+
+//   var randomCategory;
+
+//   function getRandomCategory() {
+//     randomCategory = xhrAll[Math.floor(Math.random() * xhrAll.length)];
+
+//     return randomCategory;
 //   }
-// });
+//   getRandomCategory();
 
-// if ($heart[i].classList.contains('far')) {
-//   $heart[i].classList.remove('far');
-//   $heart[i].classList.add('fas');
-// } else {
-//   $heart[i].classList.remove('fas');
-//   $heart[i].classList.add('far');
+//   function getRandomRecipe(category) {
+//     var randomIndex = Math.floor(Math.random() * category.response.hits.length);
+//     var randomRecipe = category.response.hits[randomIndex];
+//     return randomRecipe;
+//   }
+
+//   rotd.push(getRandomRecipe(randomCategory));
+
+//   renderRotd();
+//   getCategories();
+//   getRecipes();
+// });
+// xhrChicken.send();
+
+// function renderRotd() {
+//   $ingredientsList.innerHTML = '';
+//   for (var i = 0; i < rotd[0].recipe.ingredientLines.length; i++) {
+//     var $li = document.createElement('li');
+//     $li.textContent = rotd[0].recipe.ingredientLines[i];
+//     $ingredientsList.appendChild($li);
+//   }
+
+//   $cal.textContent = 'Calories: ' + rotd[0].recipe.calories;
+//   $fat.textContent = 'Fat: ' + rotd[0].recipe.digest[0].total + 'g';
+//   $carbs.textContent = 'Carbs: ' + rotd[0].recipe.digest[1].total + 'g';
+//   $protein.textContent = 'Protein: ' + rotd[0].recipe.digest[2].total + 'g';
+//   $chol.textContent = 'Cholesterol: ' + rotd[0].recipe.digest[3].total + 'g';
+
+//   $recipeTitle.textContent = rotd[0].recipe.label;
+
+//   $recipeLink.textContent = rotd[0].recipe.url;
+//   $recipeLink.setAttribute('href', rotd[0].recipe.url);
+
+//   $recipeImg.src = rotd[0].recipe.image;
 // }
+
+// // search feature
+// function getCategories() {
+//   for (var i = 0; i < xhrAll.length; i++) {
+//     categories.push(xhrAll[i].response.hits);
+//   }
+// }
+
+// function getRecipes() {
+//   for (var i = 0; i < categories.length; i++) {
+//     for (var j = 0; j < categories[i].length; j++) {
+//       recipes.push(categories[i][j].recipe);
+//     }
+//   }
+// }
+
+// var $searchResultsTemplate = document.querySelector('[data-search-results-template]');
+
+// function renderSearchResults() {
+//   recipes.forEach(recipes => {
+//     var searchResults = $searchResultsTemplate.content.cloneNode(true);
+//     var dataRecipeTitle = searchResults.querySelector('[data-recipe-title]');
+//     var dataCal = searchResults.querySelector('[data-cal]');
+//     var dataFat = searchResults.querySelector('[data-fat]');
+//     var dataCarbs = searchResults.querySelector('[data-carbs]');
+//     var dataProtein = searchResults.querySelector('[data-protein]');
+//     var dataChol = searchResults.querySelector('[data-chol]');
+//     var dataRecipeLink = searchResults.querySelector('[data-recipe-link]');
+//     var dataRecipeImg = searchResults.querySelector('[data-recipe-img]');
+
+//     dataRecipeTitle.textContent = recipes.label;
+//     dataCal.textContent = 'Calories: ' + recipes.calories;
+//     dataFat.textContent = 'Fat: ' + recipes.digest[0].total + 'g';
+//     dataCarbs.textContent = 'Carbs: ' + recipes.digest[1].total + 'g';
+//     dataProtein.textContent = 'Protein: ' + recipes.digest[2].total + 'g';
+//     dataChol.textContent = 'Cholesterol: ' + recipes.digest[3].total + 'g';
+//     dataRecipeLink.textContent = recipes.url;
+//     dataRecipeLink.setAttribute('href', recipes.url);
+//     dataRecipeImg.src = recipes.image;
+
+//     for (var i = 0; i < recipes.ingredientLines.length; i++) {
+//       var dataIngredientsList = searchResults.querySelector('[data-ingredients-list]');
+//       var $li = searchResults.createElement('li');
+//       $li.textContent = recipes.ingredientLines[i];
+//       dataIngredientsList.appendChild($li);
+//     }
+
+//     $dataViewSearchResults.append(searchResults);
+//   });
+// }
+
+// // navbar mobile/desktop view-switch
+// // window.addEventListener('resize', () => {
+// //   if (window.innerWidth < 768) {
+// //     $favorites.style.display = 'none';
+// //     $yourRecipes.style.display = 'none';
+// //     $writeRecipe.style.display = 'none';
+// //   } else {
+// //     $favorites.style.display = 'inline';
+// //     $yourRecipes.style.display = 'inline';
+// //     $writeRecipe.style.display = 'inline';
+// //   }
+// // });
+
+// // heart btn
+// // $homeHeartBtn.addEventListener('click', () => {
+// //   if ($heart.contains('far')) {
+// //     $heart.classList.remove('far');
+// //     $heart.classList.add('fas');
+// //   } else {
+// //     $heart.classList.remove('fas');
+// //     $heart.classList.add('far');
+// //   }
+// // });
+
+// // if ($heart[i].classList.contains('far')) {
+// //   $heart[i].classList.remove('far');
+// //   $heart[i].classList.add('fas');
+// // } else {
+// //   $heart[i].classList.remove('fas');
+// //   $heart[i].classList.add('far');
+// // }

@@ -13,10 +13,14 @@ header {
   background-color: rgb(167, 163, 163);
 }
 
+.navbar {
+  display: flex;
+}
+
 .navigation-menu {
   display: flex;
   list-style: none;
-  margin-top: 1.25em;
+  margin-top: 1em;
   gap: 2em;
   white-space: nowrap;
   align-items: center;
@@ -29,11 +33,12 @@ a {
 #home {
   color: white;
   font-size: 1.75rem;
+  white-space: nowrap;
 }
 
 .home {
   background-color: rgb(167, 163, 163);
-  margin: 1em 1em 1em 3em;
+  margin: 1em 0 1em 3em;
 }
 
 #favorites,
@@ -59,10 +64,6 @@ a {
   margin-left: -40px;
   margin-top: 2px;
   cursor: pointer;
-}
-
-#search-btn > img {
-  max-width: 180%;
 }
 
 /* homepage: recipe of the day */

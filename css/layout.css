@@ -17,21 +17,11 @@
   width: 100%;
 }
 
+.column-third {
+  width: calc(100% / 5);
+}
+
 /* navbar */
-header > .container > .row {
-  padding: 0.5rem 0.4rem 0.4rem;
-}
-
-header > .container > .row > .column-full {
-  display: flex;
-  justify-content: space-between;
-}
-
-.column-half.search-wrapper {
-  display: flex;
-  justify-content: end;
-  padding-right: 4.75em;
-}
 
 /* homepage: recipe of the day */
 .recipe-img-wrapper {
