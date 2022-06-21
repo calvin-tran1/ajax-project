@@ -6,6 +6,10 @@ body {
   background-color: rgb(224, 224, 224);
 }
 
+.bolded {
+  font-weight: bold;
+}
+
 /* navbar */
 
 header {
@@ -13,17 +17,12 @@ header {
   background-color: rgb(167, 163, 163);
 }
 
-.navbar {
-  display: flex;
-}
-
 .navigation-menu {
   display: flex;
   list-style: none;
-  margin-top: 1em;
+  margin-top: 1.3em;
   gap: 2em;
   white-space: nowrap;
-  align-items: center;
 }
 
 a {
@@ -47,6 +46,10 @@ a {
   color: white;
 }
 
+/* #write-recipe {
+  margin-right: 53em;
+} */
+
 #search {
   border-style: none;
   border-radius: 2px;
@@ -61,8 +64,7 @@ a {
   background-color: transparent;
   border: none;
   outline: none;
-  margin-left: -40px;
-  margin-top: 2px;
+  margin-left: -37px;
   cursor: pointer;
 }
 

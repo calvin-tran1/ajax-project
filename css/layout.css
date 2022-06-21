@@ -21,7 +21,27 @@
   width: calc(100% / 5);
 }
 
+.column-80 {
+  width: 80%;
+}
+
+nav {
+  display: inline-block;
+  align-items: center;
+}
+
 /* navbar */
+.navigation-menu {
+  display: flex;
+  align-items: center;
+}
+
+.search-bar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 5em;
+}
 
 /* homepage: recipe of the day */
 .recipe-img-wrapper {
@@ -57,6 +77,12 @@
     position: fixed;
   }
 
+  .navbar {
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+  }
+
   .navigation-menu {
     position: fixed;
     inset: 4.5% 0 70% 0;
@@ -65,9 +91,5 @@
     flex-direction: column;
     align-items: start !important;
     padding: max(2vh, 1em) 3em;
-  }
-
-  .home {
-    width: 100vw !important;
   }
 }
