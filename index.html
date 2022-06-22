@@ -13,34 +13,39 @@
 <body>
   <header>
     <div class="row navbar">
-      <div class="column-full home">
+      <button class="mobile-nav-toggle" aria-controls="navigation-menu" aria-expanded="false">
+        <span class="sr-only">Menu</span>
+      </button>
+      <div class="home">
         <a href="#" id="home">RECIPE BOOK</a>
       </div>
-    </div>
-    <nav>
-      <ul class="navigation-menu">
-        <li>
-          <a href="#" id="favorites">Your Favorites</a>
-        </li>
-        <li>
-          <a href="#" id="your-recipes">Your Recipes</a>
-        </li>
-        <li>
-          <a href="#" id="write-recipe">Write a Recipe</a>
-        </li>
-        <li>
+      <nav>
+        <ul class="navigation-menu" data-visible="false">
+          <li>
+            <a href="#" id="favorites">Your Favorites</a>
+          </li>
+          <li>
+            <a href="#" id="your-recipes">Your Recipes</a>
+          </li>
+          <li>
+            <a href="#" id="write-recipe">Write a Recipe</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="search-bar">
+        <form class="search-form">
           <label for="search"></label>
           <input id="search" type="search" placeholder="Search for recipes!" size="40">
           <button id="search-btn" type="submit">
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>
-        </li>
-      </ul>
-    </nav>
+        </form>
+      </div>
+    </div>
   </header>
   <main>
     <!--home page: recipe of the day-->
-    <div class="container hidden" data-view-rotd>
+    <div class="container" data-view-rotd>
       <div class="row">
         <div class="column-full rotd-banner">
           <h1>Recipe of the day!</h1>
@@ -69,11 +74,11 @@
             <div class="column-half nutr">
               <p class="nutrition-title">Nutrition</p>
               <ul class="nutrition-list">
-                <li class="cal"></li>
-                <li class="fat"></li>
-                <li class="carbs"></li>
-                <li class="protein"></li>
-                <li class="chol"></li>
+                <li class="cal"><strong>Calories: </strong></li>
+                <li class="fat"><span class="bolded">Fat: </span></li>
+                <li class="carbs"><span class="bolded">Carbs: </span></li>
+                <li class="protein"><span class="bolded">Protein: </span></li>
+                <li class="chol"><span class="bolded">Cholesterol: </span></li>
               </ul>
             </div>
           </div>
@@ -92,7 +97,7 @@
       </div>
     </div>
     <!--search results-->
-    <div class="container" data-view-search-results></div>
+    <div class="container hidden" data-view-search-results></div>
     <template data-search-results-template>
       <div class="search-result">
         <div class="row">
@@ -117,11 +122,11 @@
               <div class="column-half nutr">
                 <p class="nutrition-title">Nutrition</p>
                 <ul class="nutrition-list">
-                  <li class="cal" data-cal></li>
-                  <li class="fat" data-fat></li>
-                  <li class="carbs" data-carbs></li>
-                  <li class="protein" data-protein></li>
-                  <li class="chol" data-chol></li>
+                  <li class="cal" data-cal><span class="bolded">Calories: </span></li>
+                  <li class="fat" data-fat><span class="bolded">Fat: </span></li>
+                  <li class="carbs" data-carbs><span class="bolded">Carbs: </span></li>
+                  <li class="protein" data-protein><span class="bolded">Protein: </span></li>
+                  <li class="chol" data-chol><span class="bolded">Cholesterol: </span></li>
                 </ul>
               </div>
             </div>
