@@ -129,8 +129,6 @@ function renderAllRecipes() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', renderAllRecipes());
-
 $searchForm.addEventListener('submit', e => {
 
   var inputValue = $searchForm.querySelector('input').value;
@@ -153,3 +151,19 @@ function searchView() {
   $dataViewRotd.classList.add('hidden');
   $dataViewSearchResults.classList.remove('hidden');
 }
+
+// mobile nav menu button
+var $navigationMenu = document.querySelector('.navigation-menu');
+var $navToggle = document.querySelector('.mobile-nav-toggle');
+
+$navToggle.addEventListener('click', () => {
+  var visibility = $navigationMenu.getAttribute('data-visible');
+
+  if (visibility === 'false') {
+    $navigationMenu.setAttribute('data-visible', true);
+    $navToggle.setAttribute('aria-expanded', true);
+  } else if (visibility === 'true') {
+    $navigationMenu.setAttribute('data-visible', false);
+    $navToggle.setAttribute('aria-expanded', false);
+  }
+});

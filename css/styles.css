@@ -32,6 +32,7 @@ a {
   color: white;
   font-size: 1.75rem;
   white-space: nowrap;
+  background-color: rgb(167, 163, 163);
 }
 
 .home {

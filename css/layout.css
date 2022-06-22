@@ -2,6 +2,10 @@
   display: none !important;
 }
 
+.sr-only {
+  display: none;
+}
+
 .container {
   max-width: 100%;
   margin: 0 auto;
@@ -36,11 +40,8 @@ nav {
   align-items: center;
 }
 
-.search-bar {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin-right: 5em;
+.mobile-nav-toggle {
+  display: none;
 }
 
 /* homepage: recipe of the day */
@@ -59,8 +60,6 @@ nav {
   margin-bottom: 1em;
 }
 
-/* search results */
-
 /* stylelint-disable-next-line no-descending-specificity */
 [data-view-search-results] > .row {
   margin: 1em auto;
@@ -71,14 +70,25 @@ nav {
     width: 50%;
   }
 
+  .navbar {
+    width: 100vw;
+  }
+
   .search-bar {
-    margin-left: 52em;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 5em;
   }
 }
 
 @media screen and (max-width: 768px) {
   header {
     position: fixed;
+  }
+
+  main {
+    padding-top: 4rem;
   }
 
   .navbar {
@@ -88,15 +98,53 @@ nav {
 
   .navigation-menu {
     position: fixed;
+    z-index: -1;
     inset: 4.5% 0 65% 0;
     background-color: rgb(167, 163, 163, 0.85);
     backdrop-filter: blur(1em);
     flex-direction: column;
     align-items: start !important;
     padding: max(2vh, 1em) 3em;
+    transform: translateY(-120%);
+    transition: transform 350ms ease-out;
+  }
+
+  .navigation-menu[data-visible="true"] {
+    transform: translateY(-2%);
   }
 
   .recipe-hr {
     display: none;
+  }
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+    margin-right: 5em;
+    margin-bottom: 4px;
+  }
+
+  .mobile-nav-toggle {
+    display: block;
+    position: absolute;
+    z-index: 9999;
+    background-image: url("/images/menu-icon.jpg");
+    background-color: transparent;
+    background-size: 4rem;
+    background-repeat: no-repeat;
+    color: rgba(0, 0, 0, 0);
+    border-style: none;
+    width: 4rem;
+    aspect-ratio: 1;
+    top: 0.1em;
+    left: -0.4em;
+  }
+
+  .mobile-nav-toggle[aria-expanded="true"] {
+    background-image: url("/images/menu-close.png");
+    background-size: 1rem;
+    width: 1rem;
+    top: 1.8em;
+    left: 1.1em;
   }
 }
