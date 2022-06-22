@@ -127,7 +127,7 @@ nav {
   .mobile-nav-toggle {
     display: block;
     position: absolute;
-    z-index: 9999;
+    z-index: 1;
     background-image: url("/images/menu-icon.jpg");
     background-color: transparent;
     background-size: 4rem;
