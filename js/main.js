@@ -17,12 +17,15 @@
 // var $dataViewSearchResults = document.querySelector('[data-view-search-results]');
 // var $searchResultsTemplate = document.querySelector('[data-search-results-template]');
 // var $searchForm = document.querySelector('.search-form');
+// var $dataViewRotd = document.querySelector('[data-view-rotd]');
+// var $home = document.querySelector('#home');
 
 // var xhrPasta = new XMLHttpRequest();
 // var xhrChicken = new XMLHttpRequest();
 // var xhrAll = [];
 // var categories = [];
 // var recipes = [];
+// var search = [];
 
 // xhrPasta.open('GET', 'https://api.edamam.com/api/recipes/v2?type=public&q=pasta&app_id=d9d7c90f&app_key=0f9cf819b103aee9ff35391f403b7886');
 // xhrPasta.responseType = 'json';
@@ -97,10 +100,8 @@
 //   }
 // }
 
-// var x = [];
-
 // function renderAllRecipes() {
-//   x = recipes.map(recipes => {
+//   search = recipes.map(recipes => {
 //     var searchResults = $searchResultsTemplate.content.cloneNode(true).children[0];
 //     var dataRecipeTitle = searchResults.querySelector('[data-recipe-title]');
 //     var dataCal = searchResults.querySelector('[data-cal]');
@@ -129,7 +130,7 @@
 //     }
 
 //     $dataViewSearchResults.append(searchResults);
-//     return { recipeTitle: recipes.label, element: searchResults };
+//     return { recipeTitle: recipes.label, cuisine: recipes.cuisineType, element: searchResults };
 //   });
 // }
 
@@ -139,12 +140,25 @@
 
 //   var inputValue = $searchForm.querySelector('input').value;
 
-//   for (var i = 0; i < x.length; i++) {
-//     var isVisible = x[i].recipeTitle.includes(inputValue);
-//     x[i].element.classList.toggle('hidden', !isVisible);
+//   for (var i = 0; i < search.length; i++) {
+//     var isVisible = search[i].recipeTitle.toLowerCase().includes(inputValue) || search[i].cuisine.toString().toLowerCase().includes(inputValue);
+//     search[i].element.classList.toggle('hidden', !isVisible);
 //   }
 
+//   searchView();
 // });
+
+// // home button
+// $home.addEventListener('click', () => {
+//   $dataViewRotd.classList.remove('hidden');
+//   $dataViewSearchResults.classList.add('hidden');
+// });
+
+// // view switches
+// function searchView() {
+//   $dataViewRotd.classList.add('hidden');
+//   $dataViewSearchResults.classList.remove('hidden');
+// }
 // // navbar mobile/desktop view-switch
 // // window.addEventListener('resize', () => {
 // //   if (window.innerWidth < 768) {
