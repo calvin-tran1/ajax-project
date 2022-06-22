@@ -130,6 +130,7 @@ function renderAllRecipes() {
 }
 
 $searchForm.addEventListener('submit', e => {
+  e.preventDefault();
 
   var inputValue = $searchForm.querySelector('input').value;
 

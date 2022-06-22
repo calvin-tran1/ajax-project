@@ -71,7 +71,7 @@ nav {
   }
 
   .navbar {
-    width: 100vw;
+    width: 100%;
   }
 
   .search-bar {
@@ -121,7 +121,7 @@ nav {
     display: flex;
     align-items: center;
     margin-right: 5em;
-    margin-bottom: 4px;
+    margin-bottom: 0.2rem;
   }
 
   .mobile-nav-toggle {
