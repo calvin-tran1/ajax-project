@@ -2,8 +2,7 @@
 
 // local storage - general data
 var data = {
-  favorites: [],
-  recipeId: 0
+  favorites: []
 };
 var currentData = localStorage.getItem('data');
 

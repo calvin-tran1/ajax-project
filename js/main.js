@@ -15,6 +15,9 @@ var $searchForm = document.querySelector('.search-form');
 var $dataViewRotd = document.querySelector('[data-view-rotd]');
 var $home = document.querySelector('#home');
 var $heartBtn = document.querySelector('.heart-btn');
+var $favoritesTemplate = document.querySelector('[data-favorites-template]');
+var $dataViewFavorites = document.querySelector('[data-view-favorites]');
+var $favorites = document.querySelector('#favorites');
 
 var xhrPasta = new XMLHttpRequest();
 var xhrChicken = new XMLHttpRequest();
@@ -22,6 +25,7 @@ var xhrAll = [];
 var categories = [];
 var recipes = [];
 var search = [];
+var recipeId = 0;
 
 xhrPasta.open('GET', 'https://api.edamam.com/api/recipes/v2?type=public&q=pasta&app_id=d9d7c90f&app_key=0f9cf819b103aee9ff35391f403b7886');
 xhrPasta.responseType = 'json';
@@ -108,9 +112,9 @@ function renderAllRecipes() {
     var dataRecipeLink = searchResults.querySelector('[data-recipe-link]');
     var dataRecipeImg = searchResults.querySelector('[data-recipe-img]');
     var heart = searchResults.querySelector('.fa-heart');
-    var id = data.recipeId;
+    var id = recipeId;
 
-    data.recipeId++;
+    recipeId++;
     heart.setAttribute('data-search-id', id);
     dataRecipeTitle.textContent = recipes.label;
     dataCal.textContent += Math.round(recipes.calories);
@@ -152,12 +156,20 @@ $searchForm.addEventListener('submit', e => {
 $home.addEventListener('click', () => {
   $dataViewRotd.classList.remove('hidden');
   $dataViewSearchResults.classList.add('hidden');
+  $dataViewSearchResults.classList.add('hidden');
 });
 
 function searchView() {
-  $dataViewRotd.classList.add('hidden');
   $dataViewSearchResults.classList.remove('hidden');
+  $dataViewRotd.classList.add('hidden');
+  $dataViewFavorites.classList.add('hidden');
 }
+
+$favorites.addEventListener('click', () => {
+  $dataViewFavorites.classList.remove('hidden');
+  $dataViewRotd.classList.add('hidden');
+  $dataViewSearchResults.classList.add('hidden');
+});
 
 // mobile nav menu button
 var $navigationMenu = document.querySelector('.navigation-menu');
@@ -183,6 +195,50 @@ $heartBtn.addEventListener('click', () => {
 $dataViewSearchResults.addEventListener('click', e => {
   if (e.target.matches('[data-search-id]')) {
     var getRecipeId = e.target.getAttribute('data-search-id');
-    data.favorites.push(recipes[getRecipeId]);
+
+    if (data.favorites.indexOf(recipes[getRecipeId]) !== -1) {
+      data.favorites.splice(data.favorites.indexOf(recipes[getRecipeId]), 1);
+    } else {
+      data.favorites.unshift(recipes[getRecipeId]);
+    }
   }
 });
+
+function renderFavorites() {
+  data.favorites.forEach(recipes => {
+    var favorites = $favoritesTemplate.content.cloneNode(true).children[0];
+    var dataRecipeTitle = favorites.querySelector('[data-recipe-title]');
+    var dataCal = favorites.querySelector('[data-cal]');
+    var dataFat = favorites.querySelector('[data-fat]');
+    var dataCarbs = favorites.querySelector('[data-carbs]');
+    var dataProtein = favorites.querySelector('[data-protein]');
+    var dataChol = favorites.querySelector('[data-chol]');
+    var dataRecipeLink = favorites.querySelector('[data-recipe-link]');
+    var dataRecipeImg = favorites.querySelector('[data-recipe-img]');
+    var heart = favorites.querySelector('.fa-heart');
+    var id = data.recipeId;
+
+    data.recipeId++;
+    heart.setAttribute('data-search-id', id);
+    dataRecipeTitle.textContent = recipes.label;
+    dataCal.textContent += Math.round(recipes.calories);
+    dataFat.textContent += Math.round(recipes.digest[0].total) + 'g';
+    dataCarbs.textContent += Math.round(recipes.digest[1].total) + 'g';
+    dataProtein.textContent += Math.round(recipes.digest[2].total) + 'g';
+    dataChol.textContent += Math.round(recipes.digest[3].total) + 'g';
+    dataRecipeLink.textContent = recipes.url;
+    dataRecipeLink.setAttribute('href', recipes.url);
+    dataRecipeImg.src = recipes.image;
+
+    for (var i = 0; i < recipes.ingredientLines.length; i++) {
+      var dataIngredientsList = favorites.querySelector('[data-ingredients-list]');
+      var $li = document.createElement('li');
+      $li.textContent = recipes.ingredientLines[i];
+      dataIngredientsList.appendChild($li);
+    }
+
+    $dataViewFavorites.prepend(favorites);
+  });
+}
+
+renderFavorites();
