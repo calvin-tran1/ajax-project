@@ -1,5 +1,22 @@
 /* exported data, rotd */
 
+// local storage - general data
+var data = {
+  favorites: [],
+  recipeId: 0
+};
+var currentData = localStorage.getItem('data');
+
+if (currentData !== null) {
+  data = JSON.parse(currentData);
+}
+
+window.addEventListener('beforeunload', () => {
+  var dataValueJSON = JSON.stringify(data);
+  localStorage.setItem('data', dataValueJSON);
+});
+
+// local storage - recipe of the day
 var rotd = [];
 var currentRotd = localStorage.getItem('rotd');
 

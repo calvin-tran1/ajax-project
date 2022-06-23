@@ -121,7 +121,8 @@ li {
 }
 
 /* heart icon */
-.heart-btn {
+.heart-btn,
+.heart-btn-search {
   background-color: transparent;
   border-style: none;
 }

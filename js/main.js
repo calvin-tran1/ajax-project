@@ -14,6 +14,7 @@ var $searchResultsTemplate = document.querySelector('[data-search-results-templa
 var $searchForm = document.querySelector('.search-form');
 var $dataViewRotd = document.querySelector('[data-view-rotd]');
 var $home = document.querySelector('#home');
+var $heartBtn = document.querySelector('.heart-btn');
 
 var xhrPasta = new XMLHttpRequest();
 var xhrChicken = new XMLHttpRequest();
@@ -106,7 +107,11 @@ function renderAllRecipes() {
     var dataChol = searchResults.querySelector('[data-chol]');
     var dataRecipeLink = searchResults.querySelector('[data-recipe-link]');
     var dataRecipeImg = searchResults.querySelector('[data-recipe-img]');
+    var heart = searchResults.querySelector('.fa-heart');
+    var id = data.recipeId;
 
+    data.recipeId++;
+    heart.setAttribute('data-search-id', id);
     dataRecipeTitle.textContent = recipes.label;
     dataCal.textContent += Math.round(recipes.calories);
     dataFat.textContent += Math.round(recipes.digest[0].total) + 'g';
@@ -125,6 +130,7 @@ function renderAllRecipes() {
     }
 
     $dataViewSearchResults.append(searchResults);
+
     return { recipeTitle: recipes.label, cuisine: recipes.cuisineType, element: searchResults };
   });
 }
@@ -166,5 +172,17 @@ $navToggle.addEventListener('click', () => {
   } else if (visibility === 'true') {
     $navigationMenu.setAttribute('data-visible', false);
     $navToggle.setAttribute('aria-expanded', false);
+  }
+});
+
+// favorites
+$heartBtn.addEventListener('click', () => {
+  // console.log(true);
+});
+
+$dataViewSearchResults.addEventListener('click', e => {
+  if (e.target.matches('[data-search-id]')) {
+    var getRecipeId = e.target.getAttribute('data-search-id');
+    data.favorites.push(recipes[getRecipeId]);
   }
 });
