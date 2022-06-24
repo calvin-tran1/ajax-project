@@ -2,6 +2,9 @@
 
 // local storage - general data
 var data = {
+  entries: [],
+  editing: null,
+  nextEntryId: 1,
   favorites: [],
   favId: 0
 };

@@ -328,3 +328,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 });
+
+// write original recipe
+var $addIngredient = document.querySelector('.add-ingredient');
+var $ingredientEntries = document.querySelector('.ingredient-entries');
+
+$addIngredient.addEventListener('click', () => {
+  var $li = document.createElement('li');
+  var $input = document.createElement('input');
+  var $button = document.createElement('button');
+
+  $input.setAttribute('required', '');
+  $input.setAttribute('name', 'og-ingredient');
+  $input.setAttribute('placeholder', 'Ingredient');
+  $input.className = 'og-ingredient';
+
+  $button.setAttribute('type', 'button');
+  $button.className = 'delete-ingredient';
+  $button.textContent = '-';
+
+  $li.appendChild($input);
+  $li.appendChild($button);
+  $ingredientEntries.appendChild($li);
+});
+
+$ingredientEntries.addEventListener('click', e => {
+  if (e.target.matches('.delete-ingredient')) {
+    e.target.parentElement.remove();
+  }
+});

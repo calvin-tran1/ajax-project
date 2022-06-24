@@ -217,8 +217,17 @@
             <input required type="text" id="og-recipe-name" name="og-recipe-name" placeholder="Name your masterpiece!">
             <label for="og-recipe-image">Image</label>
             <input required type="url" id="og-recipe-photo" name="og-recipe-photo" placeholder="Image URL">
-            <label for="og-ingredients">Ingredients</label>
-            <textarea required rows="8" id="og-ingredients" name="og-ingredients" placeholder="List your ingredients"></textarea>
+            <div class="og-ingredients">
+              <label for="og-ingredients">Ingredients</label>
+              <button type="button" class="add-ingredient">+</button>
+            </div>
+            <div>
+              <ul class="ingredient-entries">
+                <li>
+                  <input required class="og-ingredient" name="og-ingredient" placeholder="Ingredient">
+                </li>
+              </ul>
+            </div>
             <label for="directions">Directions</label>
             <textarea required rows="8" id="directions" name="directions" placeholder="List your directions"></textarea>
           </div>
