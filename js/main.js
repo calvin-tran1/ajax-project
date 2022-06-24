@@ -169,6 +169,12 @@ $favorites.addEventListener('click', () => {
   $dataViewFavorites.classList.remove('hidden');
   $dataViewRotd.classList.add('hidden');
   $dataViewSearchResults.classList.add('hidden');
+
+  while ($dataViewFavorites.firstChild) {
+    $dataViewFavorites.removeChild($dataViewFavorites.firstChild);
+  }
+  data.favId = 0;
+  renderFavorites();
 });
 
 // mobile nav menu button
@@ -192,23 +198,9 @@ $heartBtn.addEventListener('click', () => {
   // console.log(true);
 });
 
-$dataViewSearchResults.addEventListener('click', e => {
-  if (e.target.matches('[data-search-id]')) {
-    var getRecipeId = e.target.getAttribute('data-search-id');
-
-    if (data.favorites.indexOf(recipes[getRecipeId]) !== -1) {
-      data.favorites.splice(data.favorites.indexOf(recipes[getRecipeId]), 1);
-
-    } else {
-      data.favorites.unshift(recipes[getRecipeId]);
-    }
-    renderFavorites();
-  }
-});
-
 function renderFavorites() {
   data.favorites.forEach(recipes => {
-    var favorites = $favoritesTemplate.content.cloneNode(true).children[0];
+    var favorites = $favoritesTemplate.content.cloneNode(true);
     var dataRecipeTitle = favorites.querySelector('[data-recipe-title]');
     var dataCal = favorites.querySelector('[data-cal]');
     var dataFat = favorites.querySelector('[data-fat]');
@@ -217,11 +209,12 @@ function renderFavorites() {
     var dataChol = favorites.querySelector('[data-chol]');
     var dataRecipeLink = favorites.querySelector('[data-recipe-link]');
     var dataRecipeImg = favorites.querySelector('[data-recipe-img]');
+    var favDiv = favorites.querySelector('.favorite');
     var heart = favorites.querySelector('.fa-heart');
-    var id = data.recipeId;
 
-    data.recipeId++;
-    heart.setAttribute('data-search-id', id);
+    favDiv.setAttribute('data-favorite-id', data.favId);
+    heart.setAttribute('data-heart-id', data.favId);
+    data.favId++;
     dataRecipeTitle.textContent = recipes.label;
     dataCal.textContent += Math.round(recipes.calories);
     dataFat.textContent += Math.round(recipes.digest[0].total) + 'g';
@@ -242,3 +235,33 @@ function renderFavorites() {
     $dataViewFavorites.append(favorites);
   });
 }
+
+$dataViewSearchResults.addEventListener('click', e => {
+  if (e.target.matches('[data-search-id]')) {
+    var getRecipeId = e.target.getAttribute('data-search-id');
+
+    if (data.favorites.indexOf(recipes[getRecipeId]) !== -1) {
+      data.favorites.splice(data.favorites.indexOf(recipes[getRecipeId]), 1);
+    } else {
+      data.favorites.unshift(recipes[getRecipeId]);
+    }
+    while ($dataViewFavorites.firstChild) {
+      $dataViewFavorites.removeChild($dataViewFavorites.firstChild);
+    }
+    data.favId = 0;
+    renderFavorites();
+  }
+});
+
+$dataViewFavorites.addEventListener('click', e => {
+  if (e.target.matches('.fa-heart')) {
+    var heartId = e.target.getAttribute('data-heart-id');
+    data.favorites.splice(data.favorites[heartId], 1);
+  }
+
+  while ($dataViewFavorites.firstChild) {
+    $dataViewFavorites.removeChild($dataViewFavorites.firstChild);
+  }
+  data.favId = 0;
+  renderFavorites();
+});
