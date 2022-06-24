@@ -16,6 +16,10 @@ header {
   background-color: rgb(167, 163, 163);
 }
 
+.mobile-nav-toggle:hover {
+  cursor: pointer;
+}
+
 .navigation-menu {
   display: flex;
   list-style: none;
@@ -71,20 +75,23 @@ a {
 }
 
 .recipe-title {
-  display: inline;
-  text-align: center;
+  display: block;
+  margin-left: auto;
+  padding-left: 4.35em;
   font-size: 1.6em;
   font-weight: bold;
+  white-space: nowrap;
 }
 
 .recipe-title-wrapper {
   display: flex;
-  justify-content: center;
 }
 
 .recipe-img {
   margin: 0 auto 2em;
   border-radius: 10px;
+  max-width: 300px;
+  max-height: 300px;
 }
 
 .ingredients-title,
@@ -113,7 +120,7 @@ li {
 }
 
 .recipe-line {
-  width: 90%;
+  width: 92%;
   float: left;
   height: 1px;
   border-style: none;
@@ -125,10 +132,13 @@ li {
 .heart-btn-search {
   background-color: transparent;
   border-style: none;
+  margin-left: auto;
+  margin-right: 5.5em;
 }
 
 .fa-heart {
   font-size: 2em;
+  transition: 0.35s;
 }
 
 .fa-heart:hover {
@@ -142,8 +152,16 @@ li {
 
 /* search results */
 .divider-line {
-  width: 90%;
+  width: 92%;
   height: 1px;
   border-style: none;
   background-color: black;
+}
+
+/* favorites */
+.no-fav-text {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2.5rem;
+  margin-top: 3rem;
 }

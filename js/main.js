@@ -18,6 +18,7 @@ var $heartBtn = document.querySelector('.heart-btn');
 var $favoritesTemplate = document.querySelector('[data-favorites-template]');
 var $dataViewFavorites = document.querySelector('[data-view-favorites]');
 var $favorites = document.querySelector('#favorites');
+var $heart = document.querySelector('.fa-heart');
 
 var xhrPasta = new XMLHttpRequest();
 var xhrChicken = new XMLHttpRequest();
@@ -133,6 +134,14 @@ function renderAllRecipes() {
       dataIngredientsList.appendChild($li);
     }
 
+    if (data.favorites !== null) {
+      for (var j = 0; j < data.favorites.length; j++) {
+        if (data.favorites[j].label === recipes.label) {
+          heart.className = 'fas fa-heart';
+        }
+      }
+    }
+
     $dataViewSearchResults.append(searchResults);
 
     return { recipeTitle: recipes.label, cuisine: recipes.cuisineType, element: searchResults };
@@ -157,6 +166,14 @@ $home.addEventListener('click', () => {
   $dataViewRotd.classList.remove('hidden');
   $dataViewSearchResults.classList.add('hidden');
   $dataViewFavorites.classList.add('hidden');
+
+  $heart.className = 'far fa-heart';
+
+  for (var i = 0; i < data.favorites.length; i++) {
+    if (data.favorites[i].label === rotd[0].recipe.label) {
+      $heart.className = 'fas fa-heart';
+    }
+  }
 });
 
 function searchView() {
@@ -175,6 +192,13 @@ $favorites.addEventListener('click', () => {
   }
   data.favId = 0;
   renderFavorites();
+
+  if (data.favorites.length === 0) {
+    var $p = document.createElement('p');
+    $p.className = 'no-fav-text';
+    $p.textContent = 'Search for a Favorite Recipe!';
+    $dataViewFavorites.appendChild($p);
+  }
 });
 
 // mobile nav menu button
@@ -195,7 +219,21 @@ $navToggle.addEventListener('click', () => {
 
 // favorites
 $heartBtn.addEventListener('click', () => {
-  // console.log(true);
+  if ($heart.classList.contains('far')) {
+    $heart.classList.remove('far');
+    $heart.classList.add('fas');
+  } else {
+    $heart.classList.remove('fas');
+    $heart.classList.add('far');
+  }
+
+  for (var i = 0; i < data.favorites.length; i++) {
+    if (data.favorites[i].label === rotd[0].recipe.label) {
+      return data.favorites.splice(i, 1);
+    }
+  }
+
+  data.favorites.unshift(rotd[0].recipe);
 });
 
 function renderFavorites() {
@@ -240,14 +278,22 @@ $dataViewSearchResults.addEventListener('click', e => {
   if (e.target.matches('[data-search-id]')) {
     var getRecipeId = e.target.getAttribute('data-search-id');
 
-    if (data.favorites.indexOf(recipes[getRecipeId]) !== -1) {
-      data.favorites.splice(data.favorites.indexOf(recipes[getRecipeId]), 1);
-    } else {
-      data.favorites.unshift(recipes[getRecipeId]);
+    for (var i = 0; i < data.favorites.length; i++) {
+      for (var j = 0; j < recipes.length; j++) {
+        if (data.favorites[i].label === recipes[getRecipeId].label) {
+          e.target.className = 'far fa-heart';
+          return data.favorites.splice(i, 1);
+        }
+      }
     }
+
+    e.target.className = 'fas fa-heart';
+    data.favorites.unshift(recipes[getRecipeId]);
+
     while ($dataViewFavorites.firstChild) {
       $dataViewFavorites.removeChild($dataViewFavorites.firstChild);
     }
+
     data.favId = 0;
     renderFavorites();
   }
@@ -256,7 +302,7 @@ $dataViewSearchResults.addEventListener('click', e => {
 $dataViewFavorites.addEventListener('click', e => {
   if (e.target.matches('.fa-heart')) {
     var heartId = e.target.getAttribute('data-heart-id');
-    data.favorites.splice(data.favorites[heartId], 1);
+    data.favorites.splice(heartId, 1);
   }
 
   while ($dataViewFavorites.firstChild) {
@@ -264,4 +310,21 @@ $dataViewFavorites.addEventListener('click', e => {
   }
   data.favId = 0;
   renderFavorites();
+
+  if (data.favorites.length === 0) {
+    var $p = document.createElement('p');
+    $p.className = 'no-fav-text';
+    $p.textContent = 'Search for a Favorite Recipe!';
+    $dataViewFavorites.appendChild($p);
+  }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  for (var i = 0; i < data.favorites.length; i++) {
+    if (data.favorites[i].label === rotd[0].recipe.label) {
+      $heart.className = 'fas fa-heart';
+    } else {
+      $heart.className = 'far fa-heart';
+    }
+  }
 });
