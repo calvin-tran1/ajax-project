@@ -332,6 +332,9 @@ document.addEventListener('DOMContentLoaded', () => {
 // write original recipe
 var $addIngredient = document.querySelector('.add-ingredient');
 var $ingredientEntries = document.querySelector('.ingredient-entries');
+var $form = document.querySelector('#og-recipe-form');
+var $placeholderImg = document.querySelector('.placeholder-img');
+var $ogRecipePhoto = document.querySelector('#og-recipe-photo');
 
 $addIngredient.addEventListener('click', () => {
   var $li = document.createElement('li');
@@ -356,4 +359,30 @@ $ingredientEntries.addEventListener('click', e => {
   if (e.target.matches('.delete-ingredient')) {
     e.target.parentElement.remove();
   }
+});
+
+$ogRecipePhoto.addEventListener('input', () => {
+  $placeholderImg.setAttribute('src', $ogRecipePhoto.value);
+});
+
+$form.addEventListener('submit', e => {
+  e.preventDefault();
+
+  var recipeNameValue = $form.elements.ogRecipeName.value;
+  var photoValue = $form.elements.ogRecipePhoto.value;
+  var ingredientsValue = [];
+  var ingredients = document.querySelectorAll('.og-ingredient');
+  var directionsValue = $form.elements.directions.value;
+  var entryId = data.nextEntryId;
+  var newEntry = { recipeNameValue, photoValue, ingredientsValue, directionsValue, entryId };
+
+  for (var i = 0; i < ingredients.length; i++) {
+    ingredientsValue.push(ingredients[i].value);
+  }
+
+  data.entries.unshift(newEntry);
+  data.nextEntryId++;
+
+  $form.reset();
+  $placeholderImg.setAttribute('src', 'images/img-placeholder.png');
 });
