@@ -45,7 +45,7 @@
   </header>
   <main>
     <!--home page: recipe of the day-->
-    <div class="container hidden" data-view-rotd>
+    <div class="container" data-view-rotd>
       <div class="row">
         <div class="column-full rotd-banner">
           <h1>Recipe of the day!</h1>
@@ -206,19 +206,28 @@
       </div>
     </template>
     <!--original recipe entry form-->
-    <div class="container" data-view-og-recipe-entry-form>
+    <div class="container hidden" data-view-recipe-entry-form>
       <form id="og-recipe-form" method="post">
         <div class="row">
           <div class="column-half entry-img">
-            <img class="recipe-img entry-img" src="images/img-placeholder.png" alt="recipe image">
+            <img class="recipe-img placeholder-img" src="images/img-placeholder.png" alt="recipe image">
           </div>
           <div class="column-half og-recipe-input-fields">
             <label for="og-recipe-name">Recipe Name</label>
-            <input required type="text" id="og-recipe-name" name="og-recipe-name" placeholder="Name your masterpiece!">
+            <input required type="text" id="og-recipe-name" name="ogRecipeName" placeholder="Name your masterpiece!">
             <label for="og-recipe-image">Image</label>
-            <input required type="url" id="og-recipe-photo" name="og-recipe-photo" placeholder="Image URL">
-            <label for="og-ingredients">Ingredients</label>
-            <textarea required rows="8" id="og-ingredients" name="og-ingredients" placeholder="List your ingredients"></textarea>
+            <input required type="url" id="og-recipe-photo" name="ogRecipePhoto" placeholder="Image URL">
+            <div class="og-ingredients">
+              <label for="og-ingredients">Ingredients</label>
+              <button type="button" class="add-ingredient">+</button>
+            </div>
+            <div>
+              <ul class="ingredient-entries">
+                <li>
+                  <input required class="og-ingredient" name="ogIngredient" placeholder="Ingredient">
+                </li>
+              </ul>
+            </div>
             <label for="directions">Directions</label>
             <textarea required rows="8" id="directions" name="directions" placeholder="List your directions"></textarea>
           </div>

@@ -1,9 +1,18 @@
-/* exported data, rotd */
+/* exported data, rotd, ogRecipes */
 
-// local storage - general data
+// local storage - recipe entries
+// var ogRecipes = {
+//   entries: [],
+//   editing: null,
+//   nextEntryId: 1
+// };
+
+// local storage - favorites
 var data = {
   favorites: [],
-  favId: 0
+  favId: 0,
+  entries: [],
+  nextEntryId: 1
 };
 var currentData = localStorage.getItem('data');
 

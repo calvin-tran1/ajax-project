@@ -19,6 +19,14 @@ var $favoritesTemplate = document.querySelector('[data-favorites-template]');
 var $dataViewFavorites = document.querySelector('[data-view-favorites]');
 var $favorites = document.querySelector('#favorites');
 var $heart = document.querySelector('.fa-heart');
+var $addIngredient = document.querySelector('.add-ingredient');
+var $ingredientEntries = document.querySelector('.ingredient-entries');
+var $form = document.querySelector('#og-recipe-form');
+var $placeholderImg = document.querySelector('.placeholder-img');
+var $ogRecipePhoto = document.querySelector('#og-recipe-photo');
+var $cancelBtn = document.querySelector('.cancel-btn');
+var $dataViewRecipeEntryForm = document.querySelector('[data-view-recipe-entry-form]');
+var $writeRecipe = document.querySelector('#write-recipe');
 
 var xhrPasta = new XMLHttpRequest();
 var xhrChicken = new XMLHttpRequest();
@@ -166,6 +174,7 @@ $home.addEventListener('click', () => {
   $dataViewRotd.classList.remove('hidden');
   $dataViewSearchResults.classList.add('hidden');
   $dataViewFavorites.classList.add('hidden');
+  $dataViewRecipeEntryForm.classList.add('hidden');
 
   $heart.className = 'far fa-heart';
 
@@ -176,16 +185,25 @@ $home.addEventListener('click', () => {
   }
 });
 
+$writeRecipe.addEventListener('click', () => {
+  $dataViewRecipeEntryForm.classList.remove('hidden');
+  $dataViewRotd.classList.add('hidden');
+  $dataViewSearchResults.classList.add('hidden');
+  $dataViewFavorites.classList.add('hidden');
+});
+
 function searchView() {
   $dataViewSearchResults.classList.remove('hidden');
   $dataViewRotd.classList.add('hidden');
   $dataViewFavorites.classList.add('hidden');
+  $dataViewRecipeEntryForm.classList.add('hidden');
 }
 
 $favorites.addEventListener('click', () => {
   $dataViewFavorites.classList.remove('hidden');
   $dataViewRotd.classList.add('hidden');
   $dataViewSearchResults.classList.add('hidden');
+  $dataViewRecipeEntryForm.classList.add('hidden');
 
   while ($dataViewFavorites.firstChild) {
     $dataViewFavorites.removeChild($dataViewFavorites.firstChild);
@@ -327,4 +345,66 @@ document.addEventListener('DOMContentLoaded', () => {
       $heart.className = 'far fa-heart';
     }
   }
+});
+
+// write original recipe
+$addIngredient.addEventListener('click', () => {
+  var $li = document.createElement('li');
+  var $input = document.createElement('input');
+  var $button = document.createElement('button');
+
+  $input.setAttribute('required', '');
+  $input.setAttribute('name', 'og-ingredient');
+  $input.setAttribute('placeholder', 'Ingredient');
+  $input.className = 'og-ingredient';
+
+  $button.setAttribute('type', 'button');
+  $button.className = 'delete-ingredient';
+  $button.textContent = '-';
+
+  $li.appendChild($input);
+  $li.appendChild($button);
+  $ingredientEntries.appendChild($li);
+});
+
+$ingredientEntries.addEventListener('click', e => {
+  if (e.target.matches('.delete-ingredient')) {
+    e.target.parentElement.remove();
+  }
+});
+
+$ogRecipePhoto.addEventListener('input', () => {
+  $placeholderImg.setAttribute('src', $ogRecipePhoto.value);
+});
+
+$form.addEventListener('submit', e => {
+  e.preventDefault();
+
+  var recipeNameValue = $form.elements.ogRecipeName.value;
+  var photoValue = $form.elements.ogRecipePhoto.value;
+  var ingredientsValue = [];
+  var ingredients = document.querySelectorAll('.og-ingredient');
+  var directionsValue = $form.elements.directions.value;
+  var entryId = data.nextEntryId;
+  var newEntry = { recipeNameValue, photoValue, ingredientsValue, directionsValue, entryId };
+
+  for (var i = 0; i < ingredients.length; i++) {
+    ingredientsValue.push(ingredients[i].value);
+  }
+
+  data.entries.unshift(newEntry);
+  data.nextEntryId++;
+
+  $form.reset();
+  $placeholderImg.setAttribute('src', 'images/img-placeholder.png');
+});
+
+$cancelBtn.addEventListener('click', () => {
+  $form.reset();
+  $placeholderImg.setAttribute('src', 'images/img-placeholder.png');
+
+  $dataViewRotd.classList.remove('hidden');
+  $dataViewSearchResults.classList.add('hidden');
+  $dataViewFavorites.classList.add('hidden');
+  $dataViewRecipeEntryForm.classList.add('hidden');
 });
