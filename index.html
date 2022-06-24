@@ -103,8 +103,63 @@
         <div class="row">
           <div class="column-full recipe-title-wrapper">
             <p class="recipe-title" data-recipe-title> </p>
-            <button type="button" class="heart-btn">
+            <button type="button" class="heart-btn-search">
               <i class="far fa-heart"></i>
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="column-half recipe-img-wrapper">
+            <img class="recipe-img" src="images/img-placeholder.png" data-recipe-img>
+          </div>
+          <div class="column-half">
+            <div class="row ingr-nutr">
+              <div class="column-half ingr">
+                <p class="ingredients-title">Ingredients</p>
+                <ul class="ingredients-list" data-ingredients-list>
+                </ul>
+              </div>
+              <div class="column-half nutr">
+                <p class="nutrition-title">Nutrition</p>
+                <ul class="nutrition-list">
+                  <li class="cal" data-cal><span class="bolded">Calories: </span></li>
+                  <li class="fat" data-fat><span class="bolded">Fat: </span></li>
+                  <li class="carbs" data-carbs><span class="bolded">Carbs: </span></li>
+                  <li class="protein" data-protein><span class="bolded">Protein: </span></li>
+                  <li class="chol" data-chol><span class="bolded">Cholesterol: </span></li>
+                </ul>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column-full recipe-hr">
+                <hr class="recipe-line">
+              </div>
+            </div>
+            <div class="row">
+              <div class="column-full view-recipe">
+                <p class="view-full-recipe-title">View Full Recipe</p>
+                <a href="#" class="recipe-link" data-recipe-link></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="column-full">
+            <hr class="divider-line">
+          </div>
+        </div>
+      </div>
+    </template>
+    <!--favorites-->
+    <div class="container hidden" data-view-favorites>
+    </div>
+    <template data-favorites-template>
+      <div class="favorite">
+        <div class="row">
+          <div class="column-full recipe-title-wrapper">
+            <p class="recipe-title" data-recipe-title> </p>
+            <button type="button" class="heart-btn-search">
+              <i class="fas fa-heart"></i>
             </button>
           </div>
         </div>

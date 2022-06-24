@@ -14,6 +14,11 @@ var $searchResultsTemplate = document.querySelector('[data-search-results-templa
 var $searchForm = document.querySelector('.search-form');
 var $dataViewRotd = document.querySelector('[data-view-rotd]');
 var $home = document.querySelector('#home');
+var $heartBtn = document.querySelector('.heart-btn');
+var $favoritesTemplate = document.querySelector('[data-favorites-template]');
+var $dataViewFavorites = document.querySelector('[data-view-favorites]');
+var $favorites = document.querySelector('#favorites');
+var $heart = document.querySelector('.fa-heart');
 
 var xhrPasta = new XMLHttpRequest();
 var xhrChicken = new XMLHttpRequest();
@@ -21,6 +26,7 @@ var xhrAll = [];
 var categories = [];
 var recipes = [];
 var search = [];
+var recipeId = 0;
 
 xhrPasta.open('GET', 'https://api.edamam.com/api/recipes/v2?type=public&q=pasta&app_id=d9d7c90f&app_key=0f9cf819b103aee9ff35391f403b7886');
 xhrPasta.responseType = 'json';
@@ -106,7 +112,11 @@ function renderAllRecipes() {
     var dataChol = searchResults.querySelector('[data-chol]');
     var dataRecipeLink = searchResults.querySelector('[data-recipe-link]');
     var dataRecipeImg = searchResults.querySelector('[data-recipe-img]');
+    var heart = searchResults.querySelector('.fa-heart');
+    var id = recipeId;
 
+    recipeId++;
+    heart.setAttribute('data-search-id', id);
     dataRecipeTitle.textContent = recipes.label;
     dataCal.textContent += Math.round(recipes.calories);
     dataFat.textContent += Math.round(recipes.digest[0].total) + 'g';
@@ -124,7 +134,16 @@ function renderAllRecipes() {
       dataIngredientsList.appendChild($li);
     }
 
+    if (data.favorites !== null) {
+      for (var j = 0; j < data.favorites.length; j++) {
+        if (data.favorites[j].label === recipes.label) {
+          heart.className = 'fas fa-heart';
+        }
+      }
+    }
+
     $dataViewSearchResults.append(searchResults);
+
     return { recipeTitle: recipes.label, cuisine: recipes.cuisineType, element: searchResults };
   });
 }
@@ -146,12 +165,41 @@ $searchForm.addEventListener('submit', e => {
 $home.addEventListener('click', () => {
   $dataViewRotd.classList.remove('hidden');
   $dataViewSearchResults.classList.add('hidden');
+  $dataViewFavorites.classList.add('hidden');
+
+  $heart.className = 'far fa-heart';
+
+  for (var i = 0; i < data.favorites.length; i++) {
+    if (data.favorites[i].label === rotd[0].recipe.label) {
+      $heart.className = 'fas fa-heart';
+    }
+  }
 });
 
 function searchView() {
-  $dataViewRotd.classList.add('hidden');
   $dataViewSearchResults.classList.remove('hidden');
+  $dataViewRotd.classList.add('hidden');
+  $dataViewFavorites.classList.add('hidden');
 }
+
+$favorites.addEventListener('click', () => {
+  $dataViewFavorites.classList.remove('hidden');
+  $dataViewRotd.classList.add('hidden');
+  $dataViewSearchResults.classList.add('hidden');
+
+  while ($dataViewFavorites.firstChild) {
+    $dataViewFavorites.removeChild($dataViewFavorites.firstChild);
+  }
+  data.favId = 0;
+  renderFavorites();
+
+  if (data.favorites.length === 0) {
+    var $p = document.createElement('p');
+    $p.className = 'no-fav-text';
+    $p.textContent = 'Search for a Favorite Recipe!';
+    $dataViewFavorites.appendChild($p);
+  }
+});
 
 // mobile nav menu button
 var $navigationMenu = document.querySelector('.navigation-menu');
@@ -166,5 +214,117 @@ $navToggle.addEventListener('click', () => {
   } else if (visibility === 'true') {
     $navigationMenu.setAttribute('data-visible', false);
     $navToggle.setAttribute('aria-expanded', false);
+  }
+});
+
+// favorites
+$heartBtn.addEventListener('click', () => {
+  if ($heart.classList.contains('far')) {
+    $heart.classList.remove('far');
+    $heart.classList.add('fas');
+  } else {
+    $heart.classList.remove('fas');
+    $heart.classList.add('far');
+  }
+
+  for (var i = 0; i < data.favorites.length; i++) {
+    if (data.favorites[i].label === rotd[0].recipe.label) {
+      return data.favorites.splice(i, 1);
+    }
+  }
+
+  data.favorites.unshift(rotd[0].recipe);
+});
+
+function renderFavorites() {
+  data.favorites.forEach(recipes => {
+    var favorites = $favoritesTemplate.content.cloneNode(true);
+    var dataRecipeTitle = favorites.querySelector('[data-recipe-title]');
+    var dataCal = favorites.querySelector('[data-cal]');
+    var dataFat = favorites.querySelector('[data-fat]');
+    var dataCarbs = favorites.querySelector('[data-carbs]');
+    var dataProtein = favorites.querySelector('[data-protein]');
+    var dataChol = favorites.querySelector('[data-chol]');
+    var dataRecipeLink = favorites.querySelector('[data-recipe-link]');
+    var dataRecipeImg = favorites.querySelector('[data-recipe-img]');
+    var favDiv = favorites.querySelector('.favorite');
+    var heart = favorites.querySelector('.fa-heart');
+
+    favDiv.setAttribute('data-favorite-id', data.favId);
+    heart.setAttribute('data-heart-id', data.favId);
+    data.favId++;
+    dataRecipeTitle.textContent = recipes.label;
+    dataCal.textContent += Math.round(recipes.calories);
+    dataFat.textContent += Math.round(recipes.digest[0].total) + 'g';
+    dataCarbs.textContent += Math.round(recipes.digest[1].total) + 'g';
+    dataProtein.textContent += Math.round(recipes.digest[2].total) + 'g';
+    dataChol.textContent += Math.round(recipes.digest[3].total) + 'g';
+    dataRecipeLink.textContent = recipes.url;
+    dataRecipeLink.setAttribute('href', recipes.url);
+    dataRecipeImg.src = recipes.image;
+
+    for (var i = 0; i < recipes.ingredientLines.length; i++) {
+      var dataIngredientsList = favorites.querySelector('[data-ingredients-list]');
+      var $li = document.createElement('li');
+      $li.textContent = recipes.ingredientLines[i];
+      dataIngredientsList.appendChild($li);
+    }
+
+    $dataViewFavorites.append(favorites);
+  });
+}
+
+$dataViewSearchResults.addEventListener('click', e => {
+  if (e.target.matches('[data-search-id]')) {
+    var getRecipeId = e.target.getAttribute('data-search-id');
+
+    for (var i = 0; i < data.favorites.length; i++) {
+      for (var j = 0; j < recipes.length; j++) {
+        if (data.favorites[i].label === recipes[getRecipeId].label) {
+          e.target.className = 'far fa-heart';
+          return data.favorites.splice(i, 1);
+        }
+      }
+    }
+
+    e.target.className = 'fas fa-heart';
+    data.favorites.unshift(recipes[getRecipeId]);
+
+    while ($dataViewFavorites.firstChild) {
+      $dataViewFavorites.removeChild($dataViewFavorites.firstChild);
+    }
+
+    data.favId = 0;
+    renderFavorites();
+  }
+});
+
+$dataViewFavorites.addEventListener('click', e => {
+  if (e.target.matches('.fa-heart')) {
+    var heartId = e.target.getAttribute('data-heart-id');
+    data.favorites.splice(heartId, 1);
+  }
+
+  while ($dataViewFavorites.firstChild) {
+    $dataViewFavorites.removeChild($dataViewFavorites.firstChild);
+  }
+  data.favId = 0;
+  renderFavorites();
+
+  if (data.favorites.length === 0) {
+    var $p = document.createElement('p');
+    $p.className = 'no-fav-text';
+    $p.textContent = 'Search for a Favorite Recipe!';
+    $dataViewFavorites.appendChild($p);
+  }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  for (var i = 0; i < data.favorites.length; i++) {
+    if (data.favorites[i].label === rotd[0].recipe.label) {
+      $heart.className = 'fas fa-heart';
+    } else {
+      $heart.className = 'far fa-heart';
+    }
   }
 });
