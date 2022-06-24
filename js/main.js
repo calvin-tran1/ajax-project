@@ -156,7 +156,7 @@ $searchForm.addEventListener('submit', e => {
 $home.addEventListener('click', () => {
   $dataViewRotd.classList.remove('hidden');
   $dataViewSearchResults.classList.add('hidden');
-  $dataViewSearchResults.classList.add('hidden');
+  $dataViewFavorites.classList.add('hidden');
 });
 
 function searchView() {
@@ -198,9 +198,11 @@ $dataViewSearchResults.addEventListener('click', e => {
 
     if (data.favorites.indexOf(recipes[getRecipeId]) !== -1) {
       data.favorites.splice(data.favorites.indexOf(recipes[getRecipeId]), 1);
+
     } else {
       data.favorites.unshift(recipes[getRecipeId]);
     }
+    renderFavorites();
   }
 });
 
@@ -237,8 +239,6 @@ function renderFavorites() {
       dataIngredientsList.appendChild($li);
     }
 
-    $dataViewFavorites.prepend(favorites);
+    $dataViewFavorites.append(favorites);
   });
 }
-
-renderFavorites();
