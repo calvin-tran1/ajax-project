@@ -132,11 +132,17 @@ li {
 
 /* heart icon */
 .heart-btn,
-.heart-btn-search {
+.heart-btn-search,
+.edit-btn {
   background-color: transparent;
   border-style: none;
   margin-left: auto;
   margin-right: 5.5em;
+}
+
+.fa-pen-to-square {
+  font-size: 2rem;
+  color: rgb(245, 78, 92);
 }
 
 .fa-heart {

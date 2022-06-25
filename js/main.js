@@ -172,12 +172,58 @@ $searchForm.addEventListener('submit', e => {
 });
 
 // view switches
+document.addEventListener('DOMContentLoaded', () => {
+  if (data.view === 'home') {
+    $dataViewRotd.classList.remove('hidden');
+    $dataViewSearchResults.classList.add('hidden');
+    $dataViewFavorites.classList.add('hidden');
+    $dataViewRecipeEntryForm.classList.add('hidden');
+    $dataViewOgRecipes.classList.add('hidden');
+  } else if (data.view === 'search') {
+    $dataViewSearchResults.classList.remove('hidden');
+    $dataViewRotd.classList.add('hidden');
+    $dataViewFavorites.classList.add('hidden');
+    $dataViewRecipeEntryForm.classList.add('hidden');
+    $dataViewOgRecipes.classList.add('hidden');
+  } else if (data.view === 'favorites') {
+    $dataViewFavorites.classList.remove('hidden');
+    $dataViewRotd.classList.add('hidden');
+    $dataViewSearchResults.classList.add('hidden');
+    $dataViewRecipeEntryForm.classList.add('hidden');
+    $dataViewOgRecipes.classList.add('hidden');
+  } else if (data.view === 'OGrecipes') {
+    $dataViewOgRecipes.classList.remove('hidden');
+    $dataViewRecipeEntryForm.classList.add('hidden');
+    $dataViewRotd.classList.add('hidden');
+    $dataViewSearchResults.classList.add('hidden');
+    $dataViewFavorites.classList.add('hidden');
+  } else if (data.view === 'entry') {
+    $dataViewRecipeEntryForm.classList.remove('hidden');
+    $dataViewRotd.classList.add('hidden');
+    $dataViewSearchResults.classList.add('hidden');
+    $dataViewFavorites.classList.add('hidden');
+    $dataViewOgRecipes.classList.add('hidden');
+  }
+
+  while ($dataViewFavorites.firstChild) {
+    $dataViewFavorites.removeChild($dataViewFavorites.firstChild);
+  }
+  data.favId = 0;
+  renderFavorites();
+
+  while ($dataViewOgRecipes.firstChild) {
+    $dataViewOgRecipes.removeChild($dataViewOgRecipes.firstChild);
+  }
+  renderOgRecipes();
+});
+
 $home.addEventListener('click', () => {
   $dataViewRotd.classList.remove('hidden');
   $dataViewSearchResults.classList.add('hidden');
   $dataViewFavorites.classList.add('hidden');
   $dataViewRecipeEntryForm.classList.add('hidden');
   $dataViewOgRecipes.classList.add('hidden');
+  data.view = 'home';
 
   $heart.className = 'far fa-heart';
 
@@ -195,6 +241,7 @@ $writeRecipe.addEventListener('click', () => {
   $dataViewSearchResults.classList.add('hidden');
   $dataViewFavorites.classList.add('hidden');
   $dataViewOgRecipes.classList.add('hidden');
+  data.view = 'entry';
 });
 
 function searchView() {
@@ -204,6 +251,7 @@ function searchView() {
   $dataViewRecipeEntryForm.classList.add('hidden');
   $dataViewOgRecipes.classList.add('hidden');
   $form.reset();
+  data.view = 'search';
 }
 
 $favorites.addEventListener('click', () => {
@@ -212,6 +260,7 @@ $favorites.addEventListener('click', () => {
   $dataViewSearchResults.classList.add('hidden');
   $dataViewRecipeEntryForm.classList.add('hidden');
   $dataViewOgRecipes.classList.add('hidden');
+  data.view = 'favorites';
 
   while ($dataViewFavorites.firstChild) {
     $dataViewFavorites.removeChild($dataViewFavorites.firstChild);
@@ -235,6 +284,7 @@ $yourRecipes.addEventListener('click', () => {
   $dataViewRotd.classList.add('hidden');
   $dataViewSearchResults.classList.add('hidden');
   $dataViewFavorites.classList.add('hidden');
+  data.view = 'OGrecipes';
 
   while ($dataViewOgRecipes.firstChild) {
     $dataViewOgRecipes.removeChild($dataViewOgRecipes.firstChild);
@@ -426,6 +476,7 @@ $form.addEventListener('submit', e => {
   $dataViewRotd.classList.add('hidden');
   $dataViewSearchResults.classList.add('hidden');
   $dataViewFavorites.classList.add('hidden');
+  data.view = 'OGrecipes';
 
   while ($dataViewOgRecipes.firstChild) {
     $dataViewOgRecipes.removeChild($dataViewOgRecipes.firstChild);

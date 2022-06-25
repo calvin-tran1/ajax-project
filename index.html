@@ -151,8 +151,7 @@
       </div>
     </template>
     <!--favorites-->
-    <div class="container hidden" data-view-favorites>
-    </div>
+    <div class="container hidden" data-view-favorites></div>
     <template data-favorites-template>
       <div class="favorite">
         <div class="row">
@@ -241,18 +240,15 @@
       </form>
     </div>
     <!--view recipe entry-->
-    <div class="container hidden" data-view-og-recipes>
-      <div class="row">
-        <div class="column-full rotd-banner">
-          <h1>Your Recipes!</h1>
-        </div>
-      </div>
-    </div>
+    <div class="container hidden" data-view-og-recipes></div>
     <template data-og-recipe-template>
       <div class="entry">
         <div class="row">
           <div class="column-full og-recipe-title-wrapper">
-            <p class="og-recipe-title" data-recipe-title> </p>
+            <p class="recipe-title" data-recipe-title> </p>
+            <button type="button" class="edit-btn">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </button>
           </div>
         </div>
         <div class="row">

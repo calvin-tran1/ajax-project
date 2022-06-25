@@ -2,6 +2,7 @@
 
 // local storage - general
 var data = {
+  view: null,
   favorites: [],
   favId: 0,
   entries: [],
