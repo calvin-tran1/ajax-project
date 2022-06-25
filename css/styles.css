@@ -54,7 +54,7 @@ a {
   border-style: none;
   border-radius: 2px;
   height: 2.2em;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.9em;
   padding-left: 0.5em;
   color: rgb(167, 163, 163);
 }
@@ -96,7 +96,8 @@ a {
 }
 
 .ingredients-title,
-.nutrition-title {
+.nutrition-title,
+.directions-title {
   margin: 0 auto;
   font-size: 1.2em;
   font-weight: bold;
@@ -116,7 +117,8 @@ li {
   padding: 0;
 }
 
-.view-full-recipe-title {
+.view-full-recipe-title,
+.directions-title {
   font-weight: bold;
 }
 
@@ -238,6 +240,16 @@ textarea {
   color: rgb(241, 113, 113);
   font-size: 1.2em;
   background-color: rgb(216, 209, 209);
+}
+
+.og-recipe-title-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.og-recipe-title {
+  font-weight: bold;
+  font-size: 1.6em;
 }
 
 button:hover {
