@@ -151,8 +151,7 @@
       </div>
     </template>
     <!--favorites-->
-    <div class="container hidden" data-view-favorites>
-    </div>
+    <div class="container hidden" data-view-favorites></div>
     <template data-favorites-template>
       <div class="favorite">
         <div class="row">
@@ -240,6 +239,50 @@
         </div>
       </form>
     </div>
+    <!--view recipe entry-->
+    <div class="container hidden" data-view-og-recipes></div>
+    <template data-og-recipe-template>
+      <div class="entry">
+        <div class="row">
+          <div class="column-full og-recipe-title-wrapper">
+            <p class="recipe-title" data-recipe-title> </p>
+            <button type="button" class="edit-btn">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="column-half recipe-img-wrapper">
+            <img class="recipe-img" src="images/img-placeholder.png" alt="recipe image" data-recipe-img>
+          </div>
+          <div class="column-half">
+            <div class="row ingr-nutr">
+              <div class="column-half ingr">
+                <p class="ingredients-title">Ingredients</p>
+                <ul class="ingredients-list" data-ingredients-list>
+                </ul>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column-full recipe-hr">
+                <hr class="recipe-line">
+              </div>
+            </div>
+            <div class="row">
+              <div class="column-full view-recipe">
+                <p class="directions-title">Directions</p>
+                <p class="directions"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="column-full">
+            <hr class="divider-line">
+          </div>
+        </div>
+      </div>
+    </template>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>

@@ -1,14 +1,8 @@
-/* exported data, rotd, ogRecipes */
+/* exported data, rotd */
 
-// local storage - recipe entries
-// var ogRecipes = {
-//   entries: [],
-//   editing: null,
-//   nextEntryId: 1
-// };
-
-// local storage - favorites
+// local storage - general
 var data = {
+  view: null,
   favorites: [],
   favId: 0,
   entries: [],
