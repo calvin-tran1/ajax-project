@@ -613,8 +613,3 @@ function renderOgRecipes() {
     $dataViewOgRecipes.append(dataEntries);
   });
 }
-
-// create renderEdit function
-// renderEdit will render entry template filling in data from data.editing
-// call renderEdit to save button if data.editing !== null
-// replace if data.entries.entryId === data.editing.entryId
