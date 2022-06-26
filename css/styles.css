@@ -270,6 +270,10 @@ button:hover {
 }
 
 /* modal */
+.modal-overlay.close {
+  display: none;
+}
+
 .modal-overlay.open {
   display: block;
   position: fixed;
