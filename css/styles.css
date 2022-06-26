@@ -204,6 +204,13 @@ textarea {
   padding-right: 1.5em;
 }
 
+.delete-btn {
+  border-style: none;
+  background-color: transparent;
+  font-size: 1.5rem;
+  color: rgb(248, 79, 79);
+}
+
 .ingredient-entries {
   list-style: none;
   margin-left: 0;
