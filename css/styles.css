@@ -196,7 +196,7 @@ textarea {
   border-radius: 0.3em;
   padding: 0.6em;
   font-weight: bold;
-  background-color: rgb(190, 190, 190);
+  background-color: lightgrey;
 }
 
 .save-btn {
@@ -267,4 +267,52 @@ textarea {
 
 button:hover {
   cursor: pointer;
+}
+
+/* modal */
+.modal-overlay.open {
+  display: block;
+  position: fixed;
+  z-index: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgb(0 0 0 / 68.5%);
+}
+
+.container.modal > .row > .column-full {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20rem;
+  background-color: white;
+  text-align: center;
+  padding: 3rem;
+  flex-basis: 500px;
+}
+
+.modal-text {
+  font-weight: bold;
+}
+
+.cancel-delete {
+  float: left;
+  color: black;
+  background-color: lightgrey;
+  border-style: none;
+  border-radius: 0.25rem;
+  padding: 8px 16px;
+  font-weight: bold;
+  margin-top: 1.5rem;
+}
+
+.confirm-delete {
+  float: right;
+  color: white;
+  background-color: red;
+  border-style: none;
+  border-radius: 0.25rem;
+  padding: 8px 13px;
+  font-weight: bold;
+  margin-top: 1.5rem;
 }
