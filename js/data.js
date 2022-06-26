@@ -6,7 +6,8 @@ var data = {
   favorites: [],
   favId: 0,
   entries: [],
-  nextEntryId: 1
+  nextEntryId: 1,
+  editing: null
 };
 var currentData = localStorage.getItem('data');
 

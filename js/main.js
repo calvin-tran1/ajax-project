@@ -32,6 +32,9 @@ var $dataViewOgRecipes = document.querySelector('[data-view-og-recipes]');
 var $ogRecipeName = document.querySelector('#og-recipe-name');
 var $directions = document.querySelector('#directions');
 var $deleteBtn = document.querySelector('.delete-btn');
+var $modal = document.querySelector('.modal-overlay');
+var $cancelDelete = document.querySelector('.cancel-delete');
+var $confirmDelete = document.querySelector('.confirm-delete');
 
 var xhrPasta = new XMLHttpRequest();
 var xhrChicken = new XMLHttpRequest();
@@ -239,12 +242,13 @@ $home.addEventListener('click', () => {
 });
 
 $writeRecipe.addEventListener('click', () => {
+  data.editing = null;
   $dataViewRecipeEntryForm.classList.remove('hidden');
+  $cancelBtn.classList.remove('hidden');
   $dataViewRotd.classList.add('hidden');
   $dataViewSearchResults.classList.add('hidden');
   $dataViewFavorites.classList.add('hidden');
   $dataViewOgRecipes.classList.add('hidden');
-  $cancelBtn.classList.remove('hidden');
   $deleteBtn.classList.add('hidden');
 
   var ingredientInput = document.querySelectorAll('.og-ingredient');
@@ -517,7 +521,6 @@ $form.addEventListener('submit', e => {
     }
     renderOgRecipes();
   }
-
   $form.reset();
 
   $dataViewOgRecipes.classList.remove('hidden');
@@ -616,3 +619,30 @@ function renderOgRecipes() {
     $dataViewOgRecipes.append(dataEntries);
   });
 }
+
+// delete recipe
+$deleteBtn.addEventListener('click', () => {
+  $modal.className = 'modal-overlay open';
+});
+
+$cancelDelete.addEventListener('click', () => {
+  $modal.className = 'modal-overlay close';
+});
+
+$confirmDelete.addEventListener('click', () => {
+  for (var i = 0; i < data.entries.length; i++) {
+    if (data.entries[i].entryId === data.editing.entryId) {
+      data.entries.splice(i, 1);
+
+      $dataViewOgRecipes.children[i].remove();
+    }
+  }
+  data.view = 'OGrecipes';
+
+  $modal.className = 'modal-overlay close';
+  $dataViewOgRecipes.classList.remove('hidden');
+  $dataViewRecipeEntryForm.classList.add('hidden');
+  $dataViewRotd.classList.add('hidden');
+  $dataViewSearchResults.classList.add('hidden');
+  $dataViewFavorites.classList.add('hidden');
+});
