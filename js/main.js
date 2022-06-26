@@ -31,6 +31,7 @@ var $dataOgRecipeTemplate = document.querySelector('[data-og-recipe-template]');
 var $dataViewOgRecipes = document.querySelector('[data-view-og-recipes]');
 var $ogRecipeName = document.querySelector('#og-recipe-name');
 var $directions = document.querySelector('#directions');
+var $deleteBtn = document.querySelector('.delete-btn');
 
 var xhrPasta = new XMLHttpRequest();
 var xhrChicken = new XMLHttpRequest();
@@ -244,6 +245,7 @@ $writeRecipe.addEventListener('click', () => {
   $dataViewFavorites.classList.add('hidden');
   $dataViewOgRecipes.classList.add('hidden');
   $cancelBtn.classList.remove('hidden');
+  $deleteBtn.classList.add('hidden');
 
   var ingredientInput = document.querySelectorAll('.og-ingredient');
 
@@ -544,6 +546,7 @@ $dataViewOgRecipes.addEventListener('click', e => {
     $dataViewFavorites.classList.add('hidden');
     $dataViewOgRecipes.classList.add('hidden');
     $cancelBtn.classList.add('hidden');
+    $deleteBtn.classList.remove('hidden');
 
     var ingredientInput = document.querySelectorAll('.og-ingredient');
     var subtract = ingredientInput.length - data.editing.ingredientsValue.length;
